@@ -1,0 +1,26 @@
+
+
+
+<div class="we-login-register">
+    <div class="form-title">
+        <i class="fa fa-key"></i>Sign Up
+        <span>Sign Up now and meet the awesome friends around the world.</span>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'we-form',}) do |f| %>
+        <%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: 'Nhập email' %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Nhap lai password' %>
+        <button type="submit" data-ripple="">Dang ky</button>
+
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Quen mat khau?", new_password_path(resource_name), class: 'forgot underline' %>
+        <% end %>
+    <% end %>
+
+    <% if controller_name != 'sessions' %>
+        <span>
+            Da co tai khoan? 
+            <%= link_to "Dang nhap", new_session_path(resource_name), class: 'we-account underline' %>
+        </span>
+    <% end %>
+</div>

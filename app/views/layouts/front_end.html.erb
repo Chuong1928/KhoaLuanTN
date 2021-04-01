@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Khoaluan</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <%= yield %>
-    abc
-  </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<title>Pitnik Social Network Toolkit</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
+    
+    <link rel="stylesheet" href="/front_end/css/main.min.css">
+	<link rel="stylesheet" href="/front_end/css/weather-icon.css">
+	<link rel="stylesheet" href="/front_end/css/weather-icons.min.css">
+    <link rel="stylesheet" href="/front_end/css/style.css">
+    <link rel="stylesheet" href="/front_end/css/color.css">
+    <link rel="stylesheet" href="/front_end/css/responsive.css">
+
+</head>
+<body>
+	<div class="www-layout">
+  <%= yield %>
+         
+    </div>
+    
+    	<script src="/front_end/js/main.min.js"></script>
+		<script src="/front_end/js/script.js"></script>
+</body>	
+
 </html>
