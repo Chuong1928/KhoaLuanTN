@@ -1,0 +1,60 @@
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0 font-size-18">Bài Viết (<%=@posts.count %>)</h4>
+
+                                    <div class="page-title-right">
+                                      <a href=" <%= new_admin_post_path %> " class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>Thêm bài viết mới</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                    
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                            <tr>
+                                                <th>Tieu de</th>
+                                                <th>Trang thai</th>
+                                                <th>Ngay tao</th>
+                                                <th>Ngay cap nhat</th>
+                                                <th>Luot xem</th>
+                                                <th>Hanh dong</th>
+                                            </tr>
+                                            </thead>
+        
+        
+                                            <tbody>
+                                            <% @posts.each do |post|  %>
+                                                <tr>
+                                                    <td><%= post.title %></td>
+                                                    <td><% if post.visible == true  %>
+                                                            <%= "Cong khai" %>
+                                                         <% else %>
+                                                            <%= "Rieng tu" %>
+                                                         <% end %></td>
+                                                    <td><%=  post.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
+                                                    <td><%= post.updated_at.try(:strftime, "%d-%m-%Y  %T") %></td>
+                                                    <td><%= post.views %></td>
+                                                    <td>
+                                                        <a href="/admin/posts/:<%= post.id%>/edit" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                        <a href="/admin/posts/:<%= post.id%>" id="del_<%= post.id%>" class="text-danger delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-close font-size-18"></i></a>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            <% end %>
+                                            
+                                            </tbody>
+                                        </table>
+        
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
