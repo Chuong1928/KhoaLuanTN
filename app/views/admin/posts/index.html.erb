@@ -36,9 +36,9 @@
                                                 <tr>
                                                     <td><%= post.title %></td>
                                                     <td><% if post.visible == true  %>
-                                                            <%= "Cong khai" %>
+                                                            <%= "Công khai" %>
                                                          <% else %>
-                                                            <%= "Rieng tu" %>
+                                                            <%= "Riêng tư" %>
                                                          <% end %></td>
                                                     <td><%=  post.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
                                                     <td><%= post.updated_at.try(:strftime, "%d-%m-%Y  %T") %></td>
