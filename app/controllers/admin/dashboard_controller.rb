@@ -1,8 +1,8 @@
 
 module Admin
     class DashboardController < AdminController
-        def haha
-            @count_post = Category.all.count
+        def index
+            @count_post = Post.all.count
         end
     end    
 end

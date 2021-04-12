@@ -3,8 +3,9 @@ Rails.application.routes.draw do
       
 
     namespace :admin do
-      get "/" => "dashboard#haha"
+      get "/" => "dashboard#index"
       resources :posts
+
     end
     
     devise_for :users

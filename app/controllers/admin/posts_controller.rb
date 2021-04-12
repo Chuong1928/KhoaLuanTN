@@ -6,21 +6,25 @@ module Admin
             @posts = Post.all
         end
 
-        def show     
-            #    //creat,update,destroy,show,index,new,
-            @posts = Post.all
-        end
+        def show
+            @posts = Post.find(params[:id])
+          end
 
         def new     
             #    //creat,update,destroy,show,index,new,
         end
         
-        def create     
+        def create
+            respond_to :js, :json, :html
+            
+            @posts= Post.new();
+            respond_with @posts
+            
             #    //creat,update,destroy,show,index,new,
         end
 
         def edit     
-            #    //creat,update,destroy,show,index,new,
+            @posts_edit = Post.find(params[:id])
         end
 
         def  update  
