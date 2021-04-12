@@ -4,6 +4,7 @@ module Admin
         def index     
             #    //creat,update,destroy,show,index,new,
             @posts = Post.all
+            @post  = Post.new
         end
 
         def show
@@ -12,19 +13,23 @@ module Admin
 
         def new     
             #    //creat,update,destroy,show,index,new,
+            @post  = Post.new
         end
         
         def create
-            respond_to :js, :json, :html
-            
-            @posts= Post.new();
-            respond_with @posts
-            
-            #    //creat,update,destroy,show,index,new,
+            @post = Post.new(post_params())
+            # @post.title = params[:post][:title]
+            # @post.body = params[:post][:body]
+            # @post.peralink = params[:post][:peralink]
+            # @post.visible = params[:post][:visible]
+           
+             @post.save
+
+            redirect_to admin_posts_path
         end
 
         def edit     
-            @posts_edit = Post.find(params[:id])
+            @posts = Post.find(params[:id])
         end
 
         def  update  
@@ -35,5 +40,8 @@ module Admin
             #    //creat,update,destroy,show,index,new,
         end
         
+        def post_params
+            params.require(:post).permit(:body, :title, :peralink, :visible)
+        end
     end
 end
