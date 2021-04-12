@@ -6,6 +6,11 @@ module Admin
             @posts = Post.all
         end
 
+        def show     
+            #    //creat,update,destroy,show,index,new,
+            @posts = Post.all
+        end
+
         def new     
             #    //creat,update,destroy,show,index,new,
         end
