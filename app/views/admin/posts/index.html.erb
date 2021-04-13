@@ -21,12 +21,13 @@
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Tieu de</th>
-                                                <th>Trang thai</th>
-                                                <th>Ngay tao</th>
-                                                <th>Ngay cap nhat</th>
-                                                <th>Luot xem</th>
-                                                <th>Hanh dong</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Trang thái</th>
+                                                <th>Tác giả</th>
+                                                <th>Ngay tạo</th>
+                                                <th>Ngay cập nhật</th>
+                                                <th>Lượt xem</th>
+                                                <th>Hành động</th>
                                             </tr>
                                             </thead>
         
@@ -40,14 +41,17 @@
                                                          <% else %>
                                                             <%= "Riêng tư" %>
                                                          <% end %></td>
+                                                    <td><%=  post.id %></td>
                                                     <td><%=  post.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
                                                     <td><%= post.updated_at.try(:strftime, "%d-%m-%Y  %T") %></td>
                                                     <td><%= post.views %></td>
-                                                    <td>
-                                                        <a href="/admin/posts/<%= post.id%>/edit" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                        <a href="/admin/posts/<%= post.id%>" class="text-danger delete mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-close font-size-18"></i></a>
-                                                        <a href="/admin/posts/<%= post.id%>"     class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Review"><i class="mdi mdi-monitor-eye font-size-18"></i></a>
-                                                    </td>
+                                                    <td class="d-flex">
+                                                        <a href="<%=edit_admin_post_path(post) %>" class="mr-3 text-primary" data-toggle="tooltip"  data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                        <a href="/admin/posts/<%= post.id%>"     class="mr-3 text-primary" data-toggle="tooltip" data-original-title="Review"><i class="mdi mdi-monitor-eye font-size-18"></i></a>
+                                                        <%= button_to admin_post_path(post), method: :delete, data: { "toggle" => "tooltip","original-title" => "Delete" }, class: "text-danger delete mr-3 btn btn-link p-0"  do %>
+                                                            <i class="mdi mdi-close font-size-18"></i>
+                                                        <% end %>
+                                                    </td>       
                                                 </tr>
                                             <% end %>
                                             
