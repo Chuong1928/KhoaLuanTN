@@ -7,11 +7,6 @@ Rails.application.routes.draw do
       root "dashboard#index"
     end
     
-    devise_for :users 
-    # devise_scope :users do
-    #   get "/u", to: "devise/sessions#index", as: :new_user_session
-    # end
-    # get "/u" => "devise#index"
-  #  devise_for :users
-  #  root "static_pages#home"
+    devise_for :users
+    
 end
