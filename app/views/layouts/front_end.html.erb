@@ -1,31 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta charset="utf-8">
+    <title>Contact User Grid | Skote - Responsive Bootstrap 4 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-	<title>Pitnik Social Network Toolkit</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
-    
-    <link rel="stylesheet" href="/front_end/css/main.min.css">
-	<link rel="stylesheet" href="/front_end/css/weather-icon.css">
-	<link rel="stylesheet" href="/front_end/css/weather-icons.min.css">
-    <link rel="stylesheet" href="/front_end/css/style.css">
-    <link rel="stylesheet" href="/front_end/css/color.css">
-    <link rel="stylesheet" href="/front_end/css/responsive.css">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+    <meta content="Themesbrand" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+      <!-- datepicker css -->
+    <link href="/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Summernote css -->
+    <link href="/admin/assets/libs/summernote/summernote-bs4.min.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Css -->
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
-	<div class="www-layout">
-  <%= yield %>
-         
-    </div>
-    
-    	<script src="/front_end/js/main.min.js"></script>
-		<script src="/front_end/js/script.js"></script>
-</body>	
 
+<body data-topbar="dark" data-layout="horizontal">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <%= render partial: "home/shared/header" %>
+        <%= render partial: "home/shared/topnav" %>
+
+
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                <p class="notice m-0 p-0"><%= notice %></p>
+                <p class="alert m-0 p-0"><%= alert %></p>
+                    <%= yield %>
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © Skote.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Design & Develop by Themesbrand
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="/admin/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/admin/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- bootstrap datepicker -->
+    <script src="/admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Summernote js -->
+    <script src="/admin/assets/libs/summernote/summernote-bs4.min.js"></script>
+    
+    <!-- form repeater js -->
+    <script src="/admin/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+
+    <script src="/admin/assets/js/pages/task-create.init.js"></script>
+    <!-- App js -->
+    <script src="/admin/assets/js/app.js"></script>
+    <script src="/admin/assets/js/test.js"></script>
+    
+</body>
 </html>

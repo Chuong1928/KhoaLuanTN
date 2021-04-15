@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_075715) do
+ActiveRecord::Schema.define(version: 2021_04_15_094539) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_075715) do
     t.string "body"
     t.boolean "visible"
     t.string "peralink"
-    t.integer "author_id"
+    t.integer "user_id"
     t.integer "views"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
