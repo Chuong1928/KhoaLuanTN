@@ -1,7 +1,7 @@
  <div class="we-login-register">
             <div class="form-title">
-                 <i class="fa fa-key"></i>login
-             <span>sign in now and meet the awesome Friends around the world.</span>
+                 <i class="fa fa-key"></i>Đăng nhập
+             <span>Đăng nhập để  chia sẻ những gì bạn biết đến với mọi người .</span>
             </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'we-form',}) do |f| %>
               
@@ -10,7 +10,11 @@
                 
 
     
-                <button type="submit" data-ripple="">Dang Nhap</button>
+                <button type="submit" data-ripple="">Đăng nhập</button>
             <% end %>
+          <span>
+            Bạn chưa có tài khoản? 
+            <%= link_to "Đăng kí tại đây", new_user_registration_path, class: 'we-account underline' %>
+        </span>
 </div>
 

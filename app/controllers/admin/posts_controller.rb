@@ -3,7 +3,8 @@ module Admin
     class PostsController < AdminController
         def index     
             #    //creat,update,destroy,show,index,new,
-            @posts = Post.all
+            @posts = policy_scope(Post).all.page(params[:page]).per(5)
+            
             @post  = Post.new
             respond_to do |format|
                 format.html # index.html.erb
@@ -23,42 +24,51 @@ module Admin
         end
         
         def create
-            @post = Post.new(post_params())
+            @post = Post.new(post_params)
             # @post.title = params[:post][:title]
             # @post.body = params[:post][:body]
             # @post.peralink = params[:post][:peralink]
             # @post.visible = params[:post][:visible]
-             @post.views = 0
-             @post.save
 
-            redirect_to admin_posts_path
+             @post.user_id = current_user.id
+            if  @post.save
+                redirect_to admin_posts_path
+            else
+
+                render :new
+            end
         end
 
         def edit     
-            @posts = Post.find(params[:id])
-            
+            @post = Post.find(params[:id])
+            authorize @post
         end
 
         def  update  
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
             @post = Post.find params[:id]
-            @post.update(post_params)
-            # @post.title = params[:post][:title]
-            # @post.body = params[:post][:body]
-            # @post.peralink = params[:post][:peralink]
-            # @post.visible = params[:post][:visible]
+            authorize @post
+            if @post.update(post_params)
+                # @post.save
+                # redirect_to admin_posts_path
+                redirect_to admin_posts_path
+            else
+                
+                flash[:alert] = @post.errors.full_messages.join(". ")
+                render :edit
+            end
            
-             @post.save
+             
 
-            redirect_to admin_posts_path
+            
         end
 
         def destroy     
             #    //creat,update,destroy,show,index,new,
             @post = Post.find(params[:id])
+            authorize @post
             @post.destroy
-
             redirect_to admin_posts_path
         end
         

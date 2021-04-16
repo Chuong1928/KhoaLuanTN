@@ -22,6 +22,7 @@
     <!-- App Css-->
     <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css">
 
+    <link href="/admin/assets/libs/toastr/build/toastr.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body data-sidebar="dark">
@@ -44,7 +45,7 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="javascript: void(0);" class="waves-effect">
+                            <a href="<%= admin_root_path %>" class="waves-effect">
                                 <i class="bx bx-home-circle"></i>
                                 <span>Dashboards</span>
                             </a>
@@ -52,96 +53,32 @@
                         <li class="menu-title">Apps</li>
 
                         <li>
-                            <a href="calendar.html" class=" waves-effect">
-                                <i class="bx bx-calendar"></i>
-                                <span>Calendar</span>
+                            <a href="<%= admin_posts_path %>" class=" waves-effect">
+                                <i class="bx bx-pencil"></i>
+                                <span> Quản lý bài viết</span>
                             </a>
                         </li>
+                        <% if current_user.role == "super_admin" %>
+                            <li>
+                                <a href="javascript: void(0);" >
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Quản lý User</span>
+                                </a>
 
-                        <li>
-                            <a href="chat.html" class=" waves-effect">
-                                <i class="bx bx-chat"></i>
-                                <span class="badge badge-pill badge-success float-right">New</span>
-                                <span>Chat</span>
-                            </a>
-                        </li>
+                            </li>
+                        <% end %>
 
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-store"></i>
-                                <span>Ecommerce</span>
+                         <% if current_user.role == "super_admin" %>
+                             <li>
+                            <a href="javascript: void(0);" class="">
+                                <i class="bx bx-file"></i>
+                                <span>Quản lý Danh Mục</span>
                             </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="ecommerce-products.html">Products</a></li>
-                                <li><a href="ecommerce-product-detail.html">Product Detail</a></li>
-                                <li><a href="ecommerce-orders.html">Orders</a></li>
-                                <li><a href="ecommerce-customers.html">Customers</a></li>
-                                <li><a href="ecommerce-cart.html">Cart</a></li>
-                                <li><a href="ecommerce-checkout.html">Checkout</a></li>
-                                <li><a href="ecommerce-shops.html">Shops</a></li>
-                                <li><a href="ecommerce-add-product.html">Add Product</a></li>
-                            </ul>
-                        </li>
 
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-bitcoin"></i>
-                                <span>Crypto</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="crypto-wallet.html">Wallet</a></li>
-                                <li><a href="crypto-buy-sell.html">Buy/Sell</a></li>
-                                <li><a href="crypto-exchange.html">Exchange</a></li>
-                                <li><a href="crypto-lending.html">Lending</a></li>
-                                <li><a href="crypto-orders.html">Orders</a></li>
-                                <li><a href="crypto-kyc-application.html">KYC Application</a></li>
-                                <li><a href="crypto-ico-landing.html">ICO Landing</a></li>
-                            </ul>
                         </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-envelope"></i>
-                                <span>Email</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="email-inbox.html">Inbox</a></li>
-                                <li><a href="email-read.html">Read Email</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-receipt"></i>
-                                <span>Invoices</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="invoices-list.html">Invoice List</a></li>
-                                <li><a href="invoices-detail.html">Invoice Detail</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-briefcase-alt-2"></i>
-                                <span>Projects</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="projects-grid.html">Projects Grid</a></li>
-                                <li><a href="projects-list.html">Projects List</a></li>
-                                <li><a href="projects-overview.html">Project Overview</a></li>
-                                <li><a href="projects-create.html">Create New</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bxs-user-detail"></i>
-                                <span>Contacts</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="contacts-grid.html">User Grid</a></li>
-                            </ul>
-                        </li>
+                       
+                        <% end %>
+                        
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -156,8 +93,8 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                <p class="notice m-0 p-0"><%= notice %></p>
-                <p class="alert m-0 p-0"><%= alert %></p>
+                
+
                     <%= yield %>
 
                 </div> <!-- container-fluid -->
@@ -186,6 +123,8 @@
 
     </div>
 
+                
+
 
     <!-- JAVASCRIPT -->
     <script src="/admin/assets/libs/jquery/jquery.min.js"></script>
@@ -207,6 +146,59 @@
     <!-- App js -->
     <script src="/admin/assets/js/app.js"></script>
     <script src="/admin/assets/js/test.js"></script>
+    <!-- Toast js -->
     
+    <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
+    <% if notice.present? %>
+    <script>
+             toastr["success"]("<%= notice %> ")
+    </script>
+    <% end %>
+
+    <% if alert.present? %>
+         <script>
+             toastr["error"]("<%= alert %> ")
+    </script>
+    <% end %>
+
+    <script>
+           // console.log(123)
+           $('.title_post, .peralink_post').keyup(function(){
+                let input = $(this).val();
+                $(".peralink_post").val(get_permalink(removeVietnameseTones(input)))
+            });
+            
+            function get_permalink(title){
+                return title.split(" ").join("-")
+            }
+            function removeVietnameseTones(str) {
+                    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
+                    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+                    str = str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+                    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
+                    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+                    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+                    str = str.replace(/đ/g,"d");
+                    str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+                    str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+                    str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+                    str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+                    str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+                    str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+                    str = str.replace(/Đ/g, "D");
+                    // Some system encode vietnamese combining accent as individual utf-8 characters
+                    // Một vài bộ encode coi các dấu mũ, dấu chữ như một kí tự riêng biệt nên thêm hai dòng này
+                    str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // ̀ ́ ̃ ̉ ̣  huyền, sắc, ngã, hỏi, nặng
+                    str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // ˆ ̆ ̛  Â, Ê, Ă, Ơ, Ư
+                    // Remove extra spaces
+                    // Bỏ các khoảng trắng liền nhau
+                    str = str.replace(/ + /g," ");
+                    str = str.trim();
+                    // Remove punctuations
+                    // Bỏ dấu câu, kí tự đặc biệt
+                    str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
+                    return str;
+                }
+    </script>
 </body>
 </html>

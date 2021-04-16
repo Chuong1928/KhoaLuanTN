@@ -1,10 +1,6 @@
 class HomeController < ApplicationController
     
     def index
-        if user_signed_in?
-           @posts_detail = Post.joins(:user)
-        end
-
-       
+        @all_posts = Post.visible.order(created_at: :desc)
     end
 end
