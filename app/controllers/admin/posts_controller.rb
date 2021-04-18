@@ -3,9 +3,12 @@ module Admin
     class PostsController < AdminController
         def index     
             #    //creat,update,destroy,show,index,new,
-            @posts = policy_scope(Post).all.page(params[:page]).per(5)
+            @search = policy_scope(Post).ransack(params[:q])
+
+            @posts = @search.result.page(params[:page]).per(5)
+            # 
             
-            @post  = Post.new
+             @post  = Post.new
             respond_to do |format|
                 format.html # index.html.erb
                 format.xml  { render xml: @posts }
@@ -19,6 +22,9 @@ module Admin
           end
 
         def new     
+            @search = policy_scope(Post).ransack(params[:q])
+
+            @posts = @search.result.page(params[:page]).per(5)
             #    //creat,update,destroy,show,index,new,
             @post  = Post.new
         end
@@ -31,6 +37,7 @@ module Admin
             # @post.visible = params[:post][:visible]
 
              @post.user_id = current_user.id
+             @post.slug = params[:post][:slug]
             if  @post.save
                 redirect_to admin_posts_path
             else
@@ -39,19 +46,27 @@ module Admin
             end
         end
 
-        def edit     
-            @post = Post.find(params[:id])
+        def edit    
+            @search = policy_scope(Post).ransack(params[:q])
+
+            @posts = @search.result.page(params[:page]).per(5)
+            
+            # @post = Post.find(params[:id]) 
+            #find sẽ bắn ra một Exception nếu không có bất kỳ một record nào được tìm thấy -> web bị crash
+            @post = Post.friendly.find(params[:id]) 
+
             authorize @post
         end
 
         def  update  
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
-            @post = Post.find params[:id]
+            @post = Post.friendly.find params[:id]
             authorize @post
             if @post.update(post_params)
                 # @post.save
                 # redirect_to admin_posts_path
+
                 redirect_to admin_posts_path
             else
                 
@@ -66,14 +81,14 @@ module Admin
 
         def destroy     
             #    //creat,update,destroy,show,index,new,
-            @post = Post.find(params[:id])
+            @post = Post.friendly.find(params[:id])
             authorize @post
             @post.destroy
             redirect_to admin_posts_path
         end
         
         def post_params
-            params.require(:post).permit(:body, :title, :peralink, :visible)
+            params.require(:post).permit(:body, :title, :peralink, :slug, :visible)
         end
 
     end

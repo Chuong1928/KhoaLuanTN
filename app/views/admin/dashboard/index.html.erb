@@ -2,10 +2,11 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="row align-items-center">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 hover-shadow">
+                                    <a href=" <%= admin_posts_path %>">
                                         <div class="card">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center mb-3">
+                                            <div class="card-body shadow-sm is-hover-shadow">
+                                                 <div class="d-flex align-items-center mb-3">
                                                     <div class="avatar-xs mr-3">
                                                         <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-18">
                                                             <i class="bx bx-pencil"></i>
@@ -19,8 +20,10 @@
                                                         <span class="badge badge-soft-success font-size-12"> +<%= @post_of_today%> </span> <span class="ml-2 text-truncate"> hôm nay</span>
                                                     </div>
                                                 </div>
+                                           
                                             </div>
                                         </div>
+                                         </a>
                                     </div>
 
                                     <div class="col-sm-4">

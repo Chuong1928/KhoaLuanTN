@@ -3,7 +3,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="<%= admin_root_path %>" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/admin/assets/images/logo.svg" alt="" height="22">
                                 </span>
@@ -12,7 +12,7 @@
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="<%= admin_root_path %>" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/admin/assets/images/logo-light.svg" alt="" height="22">
                                 </span>
@@ -27,12 +27,14 @@
                         </button>
 
                         <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
+                       
+                        <%= search_form_for [:admin, @search], class: "app-search d-none d-lg-block" do |f| %>
                             <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <%= f.text_field :title_cont, class: "form-control", placeholder: "Nhập tên bài viết.." %><br>
                                 <span class="bx bx-search-alt"></span>
-                            </div>
-                        </form>
+                            </div> 
+                        <% end %>
+    
                     </div> 
 
                     <div class="d-flex">
