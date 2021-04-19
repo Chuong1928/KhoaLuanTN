@@ -1,12 +1,13 @@
-    // console.log(123)
-    $('.title_post, .peralink_post').keyup(function(){
-         let input = $(this).val();
-         $(".peralink_post").val(get_permalink(removeVietnameseTones(input)))
-     });
-     
-     function get_permalink(title){
-         return title.split(" ").join("-")
-     }
+    $('.title_post, .peralink_post').keyup(function () {
+        let input = $(this).val();
+        let remove_unicode = removeVietnameseTones(input)
+        let final_permalink = get_permalink(remove_unicode)
+        $(".peralink_post").val(final_permalink)
+    });
+
+    function get_permalink(title) {
+        return title.split(" ").join("-")
+    }
      function removeVietnameseTones(str) {
              str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
              str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
@@ -35,3 +36,23 @@
              str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
              return str;
          }
+
+         let time_out_search;
+         $("#q_title_cont").keyup(function () {
+             let key_word = $(this).val();
+             clearTimeout(time_out_search)
+             time_out_search = setTimeout(() => {
+                 // call api
+                 $.ajax({
+                     url: "/admin/posts",
+                     data: {
+                         q: {
+                             title_cont: key_word
+                         },
+                         authenticity_token: AUTH_TOKEN
+                     },
+                     type: 'GET',
+                     dataType: 'script',
+                 })
+             }, 600);
+         })
