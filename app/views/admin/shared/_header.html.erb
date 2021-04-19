@@ -27,13 +27,7 @@
                         </button>
 
                         <!-- App Search-->
-                       
-                        <%= search_form_for [:admin, @search], class: "app-search d-none d-lg-block" do |f| %>
-                            <div class="position-relative">
-                                <%= f.text_field :title_cont, class: "form-control", placeholder: "Nhập tên bài viết.." %><br>
-                                <span class="bx bx-search-alt"></span>
-                            </div> 
-                        <% end %>
+                        <%= yield :search_content %>
     
                     </div> 
 

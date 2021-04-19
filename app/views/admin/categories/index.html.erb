@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Bài Viết (<%= @list_category.total_count %>)</h4>
+
+            <div class="page-title-right">
+                <a href="<%= new_admin_category_path %>"
+                    class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i
+                        class="mdi mdi-plus mr-1"></i>Thêm danh mục</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row" id="items">
+    <% @list_category.each do |category|  %>
+        <div class="col-lg-4" >
+            <div class="card border border-primary">
+                <div class="card-header bg-transparent border-primary">
+                    <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow mr-3"></i><%=category.name %></h5>
+                </div>
+                <div class="card-body pt-0">
+                    <h6 class="card-title mt-0"><%=category.name %> Bài viết</h6>
+                    <p class="card-text"><%=category.description %></p>
+                     <div  >
+                     <button class="btn btn-info mr-2">Chỉnh sửa</button>
+                     <button class="btn btn-info mr-2">Xóa</button>
+                     <button class="btn btn-info mr-2"><i class="mdi mdi-arrow-all"></i></button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    <% end %>
+</div>

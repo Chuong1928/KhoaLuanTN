@@ -4,15 +4,16 @@ class Post < ApplicationRecord
     scope :visible, -> {where visible: true} 
 
     extend FriendlyId
-    friendly_id :title, use: :slugged
+    friendly_id :permalink, use: :slugged
 
     def should_generate_new_friendly_id?
-        title_changed? || super
-      end
+      permalink_changed? || super
+    end
     #   acts_as_url :title, url_attribute: :slug, sync: true
 
     #   def to_param
     #     "#{id}-#{slug}"
     #   end
+
     
 end

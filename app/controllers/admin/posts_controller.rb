@@ -5,14 +5,15 @@ module Admin
             #    //creat,update,destroy,show,index,new,
             @search = policy_scope(Post).ransack(params[:q])
 
+            
             @posts = @search.result.page(params[:page]).per(5)
             # 
             
-             @post  = Post.new
+            #  @post  = Post.new
             respond_to do |format|
                 format.html # index.html.erb
-                format.xml  { render xml: @posts }
                 format.json { render json: @posts }
+                format.js 
             end
 
         end
@@ -37,7 +38,6 @@ module Admin
             # @post.visible = params[:post][:visible]
 
              @post.user_id = current_user.id
-             @post.slug = params[:post][:slug]
             if  @post.save
                 redirect_to admin_posts_path
             else
@@ -88,7 +88,7 @@ module Admin
         end
         
         def post_params
-            params.require(:post).permit(:body, :title, :peralink, :slug, :visible)
+            params.require(:post).permit(:body, :title, :permalink, :slug, :visible)
         end
 
     end

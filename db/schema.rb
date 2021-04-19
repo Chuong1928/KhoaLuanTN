@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_153213) do
+ActiveRecord::Schema.define(version: 2021_04_19_174511) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -25,14 +25,15 @@ ActiveRecord::Schema.define(version: 2021_04_18_153213) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name_category"
-    t.string "peralink"
+    t.string "name"
+    t.string "permalink"
     t.text "description"
     t.string "meta_title"
     t.text "meta_descript"
     t.string "meta_keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
   end
 
   create_table "friendly_id_slugs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_153213) do
     t.string "title"
     t.string "body"
     t.boolean "visible"
-    t.string "peralink"
+    t.string "permalink"
     t.integer "user_id"
     t.integer "views", default: 0
     t.datetime "created_at", null: false
