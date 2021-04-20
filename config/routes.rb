@@ -7,7 +7,13 @@ Rails.application.routes.draw do
     
     namespace :admin do
       resources :posts ,concerns: :paginatable
-      resources :categories
+      resources :categories do
+        collection do
+          post :update_position
+        end
+      end
+      
+
       root "dashboard#index"
     end
     

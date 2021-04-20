@@ -14,5 +14,46 @@ module Admin
                 format.js 
             end
         end
+        def new
+            @category  = Category.new
+        end
+
+        def create
+            @category = Category.new(category_params)
+            if  @category.save
+                redirect_to admin_categories_path
+            else
+                render :new
+            end
+        end
+
+        def edit    
+            # @search = policy_scope(Category).ransack(params[:q])
+
+            # @category = @search.result.page(params[:page]).per(5)
+            
+            # @post = Post.find(params[:id]) 
+            #find sẽ bắn ra một Exception nếu không có bất kỳ một record nào được tìm thấy -> web bị crash
+            @category = Category.find_by_id(params[:id])
+        end
+        def  update  
+            #    //creat,update,destroy,show,index,new,
+            # @posts = Post.find(params[:id])
+            @category = Category.find_by_id(params[:id]) 
+            authorize @category
+            if @category.update(category_params)  
+              redirect_to admin_categories_path
+            else
+  
+                flash[:alert] = @post.errors.full_messages.join(". ")
+                render :edit
+            end
+        end
+        def update_position
+            #each qua list_category -> find category_id end update
+        end
+        def category_params
+            params.require(:category).permit(:name, :description)
+        end
     end    
 end

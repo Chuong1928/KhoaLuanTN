@@ -23,9 +23,9 @@ module Admin
           end
 
         def new     
-            @search = policy_scope(Post).ransack(params[:q])
+            # @search = policy_scope(Post).ransack(params[:q])
 
-            @posts = @search.result.page(params[:page]).per(5)
+            # @posts = @search.result.page(params[:page]).per(5)
             #    //creat,update,destroy,show,index,new,
             @post  = Post.new
         end

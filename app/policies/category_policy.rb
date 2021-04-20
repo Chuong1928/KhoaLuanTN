@@ -16,6 +16,7 @@ class CategoryPolicy < ApplicationPolicy
         end
     end
 
+    
     def edit?
         user.role == "super_admin"
     end

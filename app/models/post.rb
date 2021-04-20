@@ -1,5 +1,9 @@
 class Post < ApplicationRecord
     belongs_to :user
+    
+    has_many :post_categories, foreign_key: :post_id
+    has_many :categories, through: :post_categories
+
     validates :title, :body, presence: true
     scope :visible, -> {where visible: true} 
 

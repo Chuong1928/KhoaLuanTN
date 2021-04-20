@@ -15,7 +15,7 @@
 
 <div class="row" id="items">
     <% @list_category.each do |category|  %>
-        <div class="col-lg-4" >
+        <div class="col-lg-4 category-items" data-id ="<%= category.id %>" >
             <div class="card border border-primary">
                 <div class="card-header bg-transparent border-primary">
                     <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow mr-3"></i><%=category.name %></h5>
@@ -23,10 +23,10 @@
                 <div class="card-body pt-0">
                     <h6 class="card-title mt-0"><%=category.name %> Bài viết</h6>
                     <p class="card-text"><%=category.description %></p>
-                     <div  >
-                     <button class="btn btn-info mr-2">Chỉnh sửa</button>
+                     <div>
+                     <a href="<%=edit_admin_category_path(category)%>" class="btn btn-info mr-2">Chỉnh sửa</a>
                      <button class="btn btn-info mr-2">Xóa</button>
-                     <button class="btn btn-info mr-2"><i class="mdi mdi-arrow-all"></i></button>
+                     <button class="btn btn-info mr-2 btn-drag"><i class="mdi mdi-arrow-all"></i></button>
                     </div>
                 </div>
                
