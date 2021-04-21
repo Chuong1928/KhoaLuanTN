@@ -6,7 +6,7 @@ default: &default
   database: khoaluank41
   pool: 5
   username: root
-  password: 123456
+  password: 123
 
 development:
   <<: *default

@@ -6,7 +6,7 @@ module Admin
             @search = policy_scope(Post).ransack(params[:q])
 
             
-            @posts = @search.result.page(params[:page]).per(5)
+            @posts = @search.result.order(created_at: :desc).page(params[:page]).per(5)
             # 
             
             #  @post  = Post.new
@@ -28,6 +28,7 @@ module Admin
             # @posts = @search.result.page(params[:page]).per(5)
             #    //creat,update,destroy,show,index,new,
             @post  = Post.new
+            
         end
         
         def create

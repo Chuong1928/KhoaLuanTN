@@ -23,6 +23,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-4">
+                                                        <label for="taskname" class="col-form-label col-lg-2">Danh mục</label>
+                                                        <div class="col-lg-10">
+                                                           <%= f.select :visible, options_for_select(Category.all.collect { |p| [ p.name, p.id ] }, 1),
+                                                            {},class: 'custom-select' %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-4">
                                                         <label class="col-form-label col-lg-2">Nội dung</label>
                                                         <div class="col-lg-10">
                                                             <div class="">Bạn đang nghĩ gì ?</div>

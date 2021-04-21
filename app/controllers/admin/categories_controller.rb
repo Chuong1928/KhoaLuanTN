@@ -4,7 +4,7 @@ module Admin
    #    //creat,update,destroy,show,index,new,
             @search = policy_scope(Category).ransack(params[:q])
        
-            @list_category = @search.result.page(params[:page]).per(5)
+            @list_category = @search.result.order(position: :asc).page(params[:page]).per(5)
             
             # 
             
@@ -51,7 +51,22 @@ module Admin
         end
         def update_position
             #each qua list_category -> find category_id end update
+            params[:category].each do |index, category| 
+                p   category
+                 @category = Category.find_by_id(index)
+                  @category.update(position: category) 
+            end
+            # redirect_to admin_categories_path
         end
+
+        def destroy     
+            #    //creat,update,destroy,show,index,new,
+            @category = Category.find(params[:id])
+            authorize @category
+            @category.destroy
+            redirect_to admin_categories_path
+        end
+
         def category_params
             params.require(:category).permit(:name, :description)
         end

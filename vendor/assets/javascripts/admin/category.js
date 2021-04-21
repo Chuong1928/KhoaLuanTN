@@ -20,5 +20,5 @@ var sortable = Sortable.create(el,{
             type: 'POST',
             dataType: 'script',
         })
-    },
+    }
 });
