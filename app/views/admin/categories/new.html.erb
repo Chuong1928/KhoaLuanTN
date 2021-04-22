@@ -13,7 +13,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         
-                                        <%= form_for [:admin, @category], html: {class: "outer-repeater", remote: false} do |f| %>
+                                        <%= form_for [:admin, @category], html: {class: "outer-repeater", remote: false,multipart: true } do |f| %>
                                             <div class="outer">
                                                 <div class="outer">
                                                     <div class="form-group row mb-4">
@@ -29,7 +29,12 @@
                                                             <%= f.text_area :description, class: "form-control" %>
                                                         </div>
                                                     </div>
-                                                 
+                                                    <div class="form-group row mb-4">
+                                                     <div class="col-lg-10">
+                                                            <div class="">Ảnh đại diện</div>
+                                                             <%= f.file_field :avatar , class: "form-control"%>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                              <div class="row justify-content-end">

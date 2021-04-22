@@ -12,7 +12,7 @@
                                                     <div class="form-group row mb-4">
                                                         <label for="taskname" class="col-form-label col-lg-2">Danh mục</label>
                                                         <div class="col-lg-10">
-                                                           <%= f.select :category_ids, options_for_select(Category.all.collect { |p| [ p.name, p.id ] }, @post.category_ids ),
+                                                           <%= f.select :category_ids, options_for_select(Category.all.collect{ |p| [ p.name, p.id ] }, @post.category_ids ),
                                                             {}, { :multiple => true,  class: 'select2 form-control select2-multiple' } %>
                                                         </div>
                                                     </div>

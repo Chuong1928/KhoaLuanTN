@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+    
     belongs_to :user
     
     has_many :post_categories, foreign_key: :post_id

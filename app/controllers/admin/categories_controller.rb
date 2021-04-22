@@ -5,7 +5,7 @@ module Admin
             @search = policy_scope(Category).ransack(params[:q])
        
             @list_category = @search.result.order(position: :asc)
-            
+            @test = Category.last
             # 
             
             #  @post  = Post.new
@@ -79,7 +79,7 @@ module Admin
         end
 
         def category_params
-            params.require(:category).permit(:name, :description)
+            params.require(:category).permit(:name, :description, :avatar)
         end
     end    
 end
