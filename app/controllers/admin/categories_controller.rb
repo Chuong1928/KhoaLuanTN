@@ -4,7 +4,7 @@ module Admin
    #    //creat,update,destroy,show,index,new,
             @search = policy_scope(Category).ransack(params[:q])
        
-            @list_category = @search.result.order(position: :asc).page(params[:page]).per(5)
+            @list_category = @search.result.order(position: :asc)
             
             # 
             
@@ -20,6 +20,8 @@ module Admin
 
         def create
             @category = Category.new(category_params)
+            @last_position = Category.last.position
+            @category.position = @last_position + 1;
             if  @category.save
                 redirect_to admin_categories_path
             else
@@ -51,12 +53,21 @@ module Admin
         end
         def update_position
             #each qua list_category -> find category_id end update
-            params[:category].each do |index, category| 
-                p   category
-                 @category = Category.find_by_id(index)
-                  @category.update(position: category) 
+           
+            params[:category].each do |id, new_position| 
+                @category = Category.find_by_id(id)
+                @category.update(position: new_position) 
+               
             end
-            # redirect_to admin_categories_path
+
+           
+                respond_to do |format|
+                    format.json {render :json => {mes: "Cập nhật thành công"}} # index.html.erb
+                end
+          
+
+
+            
         end
 
         def destroy     

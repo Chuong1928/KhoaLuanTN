@@ -12,7 +12,8 @@
     <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
       <!-- datepicker css -->
     <link href="/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
+    <!-- select2 css -->
+    <link href="/admin/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">     
     <!-- Summernote css -->
     <link href="/admin/assets/libs/summernote/summernote-bs4.min.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap Css -->
@@ -120,9 +121,8 @@
         <!-- end main content-->
 
     </div>
-
-                
-
+    <!--load animate -->
+    <%= render partial: "/admin/shared/load_animate" %>
 
     <!-- JAVASCRIPT -->
     <script src="/admin/assets/libs/jquery/jquery.min.js"></script>
@@ -147,6 +147,8 @@
     <!-- Toast js -->
     
     <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
+     <!-- select2 js -->
+    <script src="/admin/assets\libs\select2\js\select2.min.js"></script>
 
     <!--https://github.com/SortableJs -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
@@ -169,5 +171,6 @@
     <!--custom js -->
     <%= javascript_include_tag "admin/post" %>
     <%= javascript_include_tag "admin/category" %>
+    <%= javascript_include_tag "admin/shared" %>
 </body>
 </html>

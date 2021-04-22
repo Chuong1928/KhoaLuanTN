@@ -63,6 +63,7 @@ module Admin
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
             @post = Post.friendly.find params[:id]
+
             authorize @post
             if @post.update(post_params)
                 # @post.save
@@ -89,7 +90,7 @@ module Admin
         end
         
         def post_params
-            params.require(:post).permit(:body, :title, :permalink, :slug, :visible)
+            params.require(:post).permit(:body, :title, :permalink, :slug, :visible, :category_ids)
         end
 
     end
