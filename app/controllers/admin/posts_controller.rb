@@ -19,7 +19,7 @@ module Admin
         end
 
         def show
-            @posts = Post.find(params[:id])
+            @posts = Post.friendly.find(params[:id])
           end
 
         def new     
