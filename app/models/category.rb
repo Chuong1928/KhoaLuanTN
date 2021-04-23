@@ -7,7 +7,7 @@ class Category < ApplicationRecord
     
     default_scope { order(position: :asc) }
     
-    has_attached_file :avatar, styles: { medium: "300x150#" }
+    has_attached_file :avatar, styles: { medium: "600x300#" }
     
     validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 

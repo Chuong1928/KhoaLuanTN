@@ -2,17 +2,19 @@
                         <div class="row" id="items">
                                 <% @list_category.each do |category|  %>
                                  
-                                    <div class="col-lg-3 category-items" data-id ="<%= category.id %>" >
+                                    <div class="col-xl-3 col-md-4 col-6 category-items" data-id ="<%= category.id %>" >
                                         
-                                        <div class="card border border-primary">
+                                        <div class="card p-0 rounded overlay overflow-hidden">
                                             <%= image_tag category.default_avatar %>
-                                            <div class="card-header bg-transparent border-primary">
-                                                <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow mr-3"></i><%=category.name %></h5>
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <h6 class="card-title mt-0"><%= PostCategory.joins(:post).where(category_id:category.id).count %> Bài viết</h6>
-                                            </div>
-                                        
+                                            <div class="card-header bg-transparent text-center px-2 w-100 category-item-header">
+                                                <h2 class="my-0 text-white">
+                                                    <%=category.name %>
+                                                </h2>
+                                                <h5 class="my-0 text-white">
+                                                    <%= PostCategory.joins(:post).where(category_id:category.id).count %>
+                                                    Bài viết
+                                                </h5>
+                                            </div>                                        
                                         </div>
                                     </div>
                                 <% end %>

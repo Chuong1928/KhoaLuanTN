@@ -1,0 +1,18 @@
+.search-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.navbar-header {
+    height: 80px;
+}
+.app-search {
+    .form-control {
+        height: 46px;
+        border-radius: 5px;
+    }
+    span {
+        line-height: 46px;
+        font-size: 24px;
+    }
+}

@@ -20,7 +20,7 @@ module Admin
 
         def create
             @category = Category.new(category_params)
-            @last_position = Category.last.position
+            @last_position = Category&.last&.position || 0
             @category.position = @last_position + 1;
             if  @category.save
                 redirect_to admin_categories_path

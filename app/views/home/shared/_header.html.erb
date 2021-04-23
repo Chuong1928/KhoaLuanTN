@@ -1,7 +1,7 @@
 
             <header id="page-topbar">
                 <div class="navbar-header">
-                    <div class="d-flex">
+                    <div class="d-flex flex-grow-1">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
                             <a href="index.html" class="logo logo-dark">
@@ -28,8 +28,8 @@
                         </button>
 
                         <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="position-relative">
+                        <form class="app-search d-none d-lg-block flex-grow-1">
+                            <div class="position-relative search-header-content">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="bx bx-search-alt"></span>
                             </div>
@@ -59,90 +59,7 @@
                             </div>
                         </div>
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="" src="/admin/assets/images/flags\us.jpg" alt="Header Language" height="16">
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <img src="/admin/assets/images/flags\spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
-                                </a>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <img src="/admin/assets/images/flags\germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <img src="/admin/assets/images/flags\italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <img src="/admin/assets/images/flags\russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="dropdown d-none d-lg-inline-block ml-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-customize"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                <div class="px-lg-2">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\github.png" alt="Github">
-                                                <span>GitHub</span>
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\bitbucket.png" alt="bitbucket">
-                                                <span>Bitbucket</span>
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\dribbble.png" alt="dribbble">
-                                                <span>Dribbble</span>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\dropbox.png" alt="dropbox">
-                                                <span>Dropbox</span>
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\mail_chimp.png" alt="mail_chimp">
-                                                <span>Mail Chimp</span>
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="/admin/assets/images/brands\slack.png" alt="slack">
-                                                <span>Slack</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dropdown d-none d-lg-inline-block ml-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                                <i class="bx bx-fullscreen"></i>
-                            </button>
-                        </div>
                         
                         <% if user_signed_in? %>
                         <div class="dropdown d-inline-block">
@@ -154,15 +71,11 @@
                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                                  </button>
                                  <div class="dropdown-menu dropdown-menu-right">
-                                <!-- item-->
-                                    <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a>
-                                    <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
+
                                     <%= button_to  destroy_user_session_path, method: :delete,class: "dropdown-item text-danger" do%>
                                         <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>Logout
-                                        <% end  %>
-                         </div>
+                                    <% end  %>
+                                </div>
                         <% else %> 
                             <div class="dropdown d-none d-lg-inline-block ml-1">
                                 <div class="d-flex align-items-center header-item">
@@ -171,12 +84,6 @@
                                 </div>
                             </div>
                         <% end %>
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                                <i class="bx bx-cog bx-spin"></i>
-                            </button>
-                        </div>
-            
                     </div>
                 </div>
             </header>

@@ -22,6 +22,10 @@
     <!-- App Css-->
     <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css">
 
+    <%# custom css %>
+    <%= stylesheet_link_tag 'frontend/all' %>
+
+
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
@@ -30,16 +34,12 @@
     <div id="layout-wrapper">
 
         <%= render partial: "home/shared/header" %>
-        <%= render partial: "home/shared/topnav" %>
 
 
         <div class="main-content">
             <div class="page-content">
                 <div class="container-fluid">
-                <p class="notice m-0 p-0"><%= notice %></p>
-                <p class="alert m-0 p-0"><%= alert %></p>
                     <%= yield %>
-
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
