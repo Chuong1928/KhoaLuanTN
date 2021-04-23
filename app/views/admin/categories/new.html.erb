@@ -14,29 +14,7 @@
                                     <div class="card-body">
                                         
                                         <%= form_for [:admin, @category], html: {class: "outer-repeater", remote: false,multipart: true } do |f| %>
-                                            <div class="outer">
-                                                <div class="outer">
-                                                    <div class="form-group row mb-4">
-                                                        <label for="taskname" class="col-form-label col-lg-2">Tiêu đề</label>
-                                                        <div class="col-lg-10">
-                                                            <%= f.text_field :name, placeholder: 'Tên danh mục ...' ,class: 'form-control title_post'  %>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-4">
-                                                        <label class="col-form-label col-lg-2">Mô tả</label>
-                                                        <div class="col-lg-10">
-                                                            <div class="">Mô tả ngắn về danh mục ?</div>
-                                                            <%= f.text_area :description, class: "form-control" %>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row mb-4">
-                                                     <div class="col-lg-10">
-                                                            <div class="">Ảnh đại diện</div>
-                                                             <%= f.file_field :avatar , class: "form-control"%>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <%= render partial: 'form',:locals => {:f => f}%>
                                              <div class="row justify-content-end">
                                                 <div class="col-lg-10">
                                                     <button type="submit" class="btn btn-primary new-post">Tạo danh mục</button>

@@ -4,6 +4,7 @@ class Post < ApplicationRecord
     
     has_many :post_categories, foreign_key: :post_id
     has_many :categories, through: :post_categories
+    accepts_nested_attributes_for :post_categories
 
     validates :title, :body, presence: true
     scope :visible, -> {where visible: true} 

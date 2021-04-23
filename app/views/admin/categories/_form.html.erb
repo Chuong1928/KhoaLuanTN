@@ -1,0 +1,31 @@
+
+            
+                                    <div class="outer">
+                                                <div class="outer">
+                                                    <div class="form-group row mb-4">
+                                                        <label for="taskname" class="col-form-label col-lg-2">Tiêu đề</label>
+                                                        <div class="col-lg-10">
+                                                            <%= f.text_field :name, placeholder: 'Tên danh mục ...' ,class: 'form-control title_post'  %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-4">
+                                                        <label class="col-form-label col-lg-2">Mô tả</label>
+                                                        <div class="col-lg-10">
+                                                            <div class="">Mô tả ngắn về danh mục ?</div>
+                                                            <%= f.text_area :description, class: "form-control" %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-4">
+                                                     <div class="col-lg-10">
+                                                            <label for="taskname" class="col-form-label col-lg-2">Hình ảnh</label>
+                                                            <div class="col-lg-10">
+                                                                   <%= f.file_field :avatar %>
+                                                                   <% if @category.avatar.present?   %>
+                                                                    <%= image_tag @category.default_avatar %>
+                                                                    <% end %>
+                                                                    <img id="blah" src="#" alt="your image" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>

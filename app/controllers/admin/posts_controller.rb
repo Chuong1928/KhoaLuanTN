@@ -37,18 +37,15 @@ module Admin
             # @post.body = params[:post][:body]
             # @post.peralink = params[:post][:peralink]
             # @post.visible = params[:post][:visible]
+           
+
              @post.user_id = current_user.id
-             @category_ids = params[:post][:category_ids]
-             p @category_ids
             if  @post.save
-                # if Category.find(:category_ids).posts << @post
-                #     redirect_to admin_posts_path
-                # else
-                #     render :new
-                # end
+                # categories = Category.find(params[:post][:category_ids])
+                @post.category_ids = params[:post][:category_ids] # = categories
                 redirect_to admin_posts_path
             else
-
+                p @post.errors.full_messages
                 render :new
             end
         end
@@ -69,7 +66,7 @@ module Admin
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
             @post = Post.friendly.find params[:id]
-
+            @action = "update"
             authorize @post
             if @post.update(post_params)
                 # @post.save
@@ -96,7 +93,7 @@ module Admin
         end
         
         def post_params
-            params.require(:post).permit(:body, :title, :permalink, :slug, :visible, category_ids:[])
+            params.require(:post).permit(:body, :title, :permalink, :slug, :visible)
         end
     end
 end

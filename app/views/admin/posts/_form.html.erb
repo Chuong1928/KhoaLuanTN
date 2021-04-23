@@ -46,7 +46,15 @@
                                             </div>
                                              <div class="row justify-content-end">
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-primary new-post">Tạo bài viết</button>
+                                                    <button type="submit" class="btn btn-primary new-post">
+                                                    <%=
+                                                        if current_page?(action: 'new')
+                                                            p 'Thêm'
+                                                        else
+                                                            p 'Cập nhật'
+                                                        end
+                                                     %>
+                                                     </button>
                                                     <%= link_to "Hủy", admin_posts_path , class: "btn btn-secondary" %>
                                                 </div>
                                             </div>

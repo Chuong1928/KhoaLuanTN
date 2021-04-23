@@ -11,10 +11,9 @@
                                                 <i class="bx bx-home-circle mr-2"></i>Danh mục <div class="arrow-down"></div>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-    
-                                                <a href="index.html" class="dropdown-item">Default</a>
-                                                <a href="dashboard-saas.html" class="dropdown-item">Saas</a>
-                                                <a href="dashboard-crypto.html" class="dropdown-item">Crypto</a>
+                                                  <% @list_category.each do |category|  %>
+                                                        <a href="<%=  %>" class="dropdown-item"><%= category.name %></a>
+                                                    <% end %>
                                             </div>
                                         </li>
         
