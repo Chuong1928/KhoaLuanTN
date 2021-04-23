@@ -8,11 +8,12 @@ class CategoryPolicy < ApplicationPolicy
 
     class Scope < Scope
         def resolve
-            if user.role == "super_admin"
-               scope.all
-            else
-                raise Pundit::NotAuthorizedError
-            end
+            # if user.role == "super_admin"
+            #    scope.all
+            # else
+            #     raise Pundit::NotAuthorizedError
+            # end
+            scope.all
         end
     end
 

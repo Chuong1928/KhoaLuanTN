@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
 
     layout "front_end"
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
    

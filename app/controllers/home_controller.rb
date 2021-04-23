@@ -9,4 +9,7 @@ class HomeController < ApplicationController
         @search = policy_scope(Category).ransack(params[:q])
         @list_category = @search.result.order(position: :asc)
     end
+
+ 
+
 end

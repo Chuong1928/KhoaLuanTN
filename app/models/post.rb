@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
     
     belongs_to :user
+    has_many :comments
     
     has_many :post_categories, foreign_key: :post_id
     has_many :categories, through: :post_categories

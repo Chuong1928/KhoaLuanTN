@@ -12,5 +12,6 @@ function readURL(input) {
 }
 
     $("#category_avatar").change(function(){
+        $('#blah').removeClass("d-none")
         readURL(this);
     });
