@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_091124) do
+ActiveRecord::Schema.define(version: 2021_04_23_174930) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 2021_04_23_091124) do
     t.datetime "updated_at", null: false
     t.integer "post_id"
     t.integer "user_id"
+    t.string "slug"
+    t.string "permalink"
+    t.index ["slug"], name: "index_comments_on_slug"
   end
 
   create_table "friendly_id_slugs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|

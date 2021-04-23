@@ -12,7 +12,7 @@ Rails.application.routes.draw do
           post :update_position
         end
       end
-      
+      resources :comments
 
       root "dashboard#index"
     end
