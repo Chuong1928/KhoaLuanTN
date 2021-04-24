@@ -13,4 +13,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules', 'vendor
 # folder are already added.
 Rails.application.config.assets.precompile += %w( admin/* )
 Rails.application.config.assets.precompile += %w( frontend/all )
+Rails.application.config.assets.precompile += %w( front_end/* )
 

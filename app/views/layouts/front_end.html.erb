@@ -74,6 +74,12 @@
     <script src="/admin/assets/js/app.js"></script>
     <script src="/admin/assets/js/test.js"></script>
 
+    
+     <script>
+        <%== "var AUTH_TOKEN = #{form_authenticity_token.inspect};" %>
+    </script>
+    <!--custom js -->
+    <%= javascript_include_tag "front_end/search" %>
 </body>
 
 </html>

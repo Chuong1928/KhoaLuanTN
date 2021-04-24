@@ -1,7 +1,4 @@
-<div class="row">
-    <div class="col-12 col-lg-9" id="list_post">
-        <!-- post item here -->
-        <% @all_posts.each do |post| %>
+     <% @posts.each do |post| %>
 
         <div class="post-item shadow mb-2">
             <div class="item-head d-flex align-item-center">
@@ -31,16 +28,3 @@
 
         </div>
         <% end %>
-
-
-    </div>
-    <div class="col-12 col-lg-3"></div>
-
-</div>
-
-
-<!-- end row -->
-
-<%= render partial: 'categories/list' %>
-
-                  

@@ -28,13 +28,13 @@
                         </button>
 
                         <!-- App Search-->
-                        <form class="app-search d-none d-lg-block flex-grow-1">
-                            <div class="position-relative search-header-content">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="bx bx-search-alt"></span>
-                            </div>
-                        </form>
-
+                       
+                         <%= search_form_for(@q, url: "/post", method: :get, class: "app-search d-none d-lg-block flex-grow-1") do |f| %>
+                                    <div class="position-relative search-header-content">
+                                        <%= f.text_field :title_cont, class: "form-control", placeholder: "Nhập từ khóa.." %>
+                                        <span class="bx bx-search-alt"></span>
+                                    </div> 
+                        <% end %> 
                         
                     </div>
 
