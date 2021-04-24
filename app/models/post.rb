@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-    
+    require 'nokogiri'
+  
     belongs_to :user
     has_many :comments
     
@@ -16,11 +17,20 @@ class Post < ApplicationRecord
     def should_generate_new_friendly_id?
       permalink_changed? || super
     end
+
+    
     #   acts_as_url :title, url_attribute: :slug, sync: true
 
     #   def to_param
     #     "#{id}-#{slug}"
     #   end
+    before_save :time_read_post
 
+    def time_read_post
+      doc = Nokogiri::HTML(self.body)
+      words = doc.content.split(/\s+/).length
+      count_word = (words/300.0).ceil
+      self.readtime = count_word
+    end
     
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         end
       end
       resources :comments
+      resources :users
 
       root "dashboard#index"
     end
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
     devise_for :users
     
     resources :post
+
 end

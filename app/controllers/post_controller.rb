@@ -15,7 +15,7 @@ class PostController < ApplicationController
         @search = policy_scope(Category).ransack(params[:q])
         @list_category = @search.result.order(position: :asc)
         
-        @q = policy_scope(Post).friendly.ransack(params[:q])
+        @q = Post.friendly.ransack(params[:q])
         # @list_category = @search.result.order(position: :asc)
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
         respond_to do |format|

@@ -1,4 +1,4 @@
-class PostPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize user, scope
@@ -17,8 +17,7 @@ class PostPolicy < ApplicationPolicy
     end
 
     def edit?
-        p user.role
-        scope.user_id == user.id  || user.role == "super_admin" 
+        scope.user_id == user.id   
     end
 
     def update?
@@ -30,6 +29,6 @@ class PostPolicy < ApplicationPolicy
     end
 
     def show?
-        true
+        scope.user_id == user.id  || user.role == "super_admin" 
     end
 end
