@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
         #     @posts = @search.result.page(params[:page]).per(5)
         @search = policy_scope(Category).ransack(params[:q])
-        @list_category = @search.result.order(position: :asc)
+        @categorys = @search.result.order(position: :asc)
     end
 
  

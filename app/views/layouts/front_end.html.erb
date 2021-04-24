@@ -10,7 +10,7 @@
     <meta content="Themesbrand" name="author">
     <!-- App favicon -->
     <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
-      <!-- datepicker css -->
+    <!-- datepicker css -->
     <link href="/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
     <!-- Summernote css -->
@@ -33,34 +33,20 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <%= render partial: "home/shared/header" %>
-        <%= render partial: "home/shared/banner" %>   
+        <%= render partial: "shared/header" %>
 
         <div class="main-content">
-            <div class="page-content">
+            <%= render partial: "shared/banner" %>   
+
+            <div class="page-content mt-0">
                 <div class="container-fluid">
                     <%= yield %>
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
+            
+            <%= render partial: "shared/footer" %>
 
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> © SHARED.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-right d-none d-sm-block">
-                                Develop by <a href="https://github.com/Chuong1928">Chuong1928<a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
 
@@ -74,12 +60,12 @@
     <script src="/admin/assets/libs/simplebar/simplebar.min.js"></script>
     <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
 
-        <!-- bootstrap datepicker -->
+    <!-- bootstrap datepicker -->
     <script src="/admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
     <!-- Summernote js -->
     <script src="/admin/assets/libs/summernote/summernote-bs4.min.js"></script>
-    
+
     <!-- form repeater js -->
     <script src="/admin/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
 
@@ -87,6 +73,7 @@
     <!-- App js -->
     <script src="/admin/assets/js/app.js"></script>
     <script src="/admin/assets/js/test.js"></script>
-    
+
 </body>
+
 </html>
