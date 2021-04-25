@@ -9,3 +9,7 @@
 .user-manage:hover{
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 40%);
 }
+.profile-user{
+    width: 100px;
+    height: 100px;
+}

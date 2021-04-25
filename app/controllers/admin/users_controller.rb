@@ -22,7 +22,60 @@ module Admin
 
         def show
             @user = User.find(params[:id])
-          end
+        end
 
+        def edit   
+            # @post = Post.find(params[:id]) 
+            #find sẽ bắn ra một Exception nếu không có bất kỳ một record nào được tìm thấy -> web bị crash
+            @user = User.find(params[:id]) 
+
+            authorize @user
+        end
+
+        def edit_password
+            @user = User.find(current_user.id)
+            #each qua list_category -> find category_id end update
+           
+            # params[:category].each do |id, new_position| 
+            #     @category = Category.find_by_id(id)
+            #     @category.update(position: new_position) 
+               
+            # end
+
+           
+            #     respond_to do |format|
+            #         format.json {render :json => {mes: "Cập nhật thành công"}} # index.html.erb
+            #     end
+          
+
+
+            
+        end
+
+        def edit_profile
+            @user = User.find(current_user.id)
+        end
+
+        def  update 
+            @user = User.find(current_user.id)
+           
+            authorize @user
+            if @user.update(user_params)
+                # @post.save
+                # redirect_to admin_posts_path
+                 flash[:notice] = "Cập nhật thành công"
+                 redirect_to edit_profile_admin_users_path
+            else
+                
+                flash[:alert] = @user.errors.full_messages.join(". ")
+                render :edit
+            end
+           
+             
+        end
+
+        def user_params
+            params.require(:user).permit(:name, :nickname, :email, :avatar)
+        end
     end    
 end

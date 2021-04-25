@@ -33,7 +33,7 @@
             </div>
             <div class="row py-4">
                 <div class="mb-2 col-sm-6 col-md-4">
-                    <a href="/profile/personal" class="edit-user">
+                    <a href="<%= edit_profile_admin_users_path %>" class="edit-user">
                         <div class="user-manage card-item text-center is-hover-shadow py-5">
                                 <!---->
                                 <div class="user-manage-body">
@@ -46,11 +46,11 @@
                     </a>
                 </div>
                  <div class="mb-2 col-sm-6 col-md-4">
-                    <a href="/profile/personal" class="edit-user">
+                    <a href="<%= edit_password_admin_users_path %>" class="edit-user">
                         <div class="user-manage card-item text-center is-hover-shadow py-5">
                                 <!---->
                                 <div class="user-manage-body">
-                                <i class="fas fa-user-alt"></i>
+                                <i class="bx bx-lock"></i>
                                     <h2 class="card-title mt-4">
                                         Mật khẩu
                                     </h2>
@@ -59,13 +59,13 @@
                     </a>
                 </div>
                  <div class="mb-2 col-sm-6 col-md-4">
-                    <a href="/profile/personal" class="edit-user">
+                    <a href="<%= edit_admin_user_path(@user.id) %>" class="edit-user">
                         <div class="user-manage card-item text-center is-hover-shadow py-5">
                                 <!---->
                                 <div class="user-manage-body">
-                                <i class="bx bx-lock"></i>
+                                <i class="bx bxs-star"></i>
                                     <h2 class="card-title mt-4">
-                                        Nhật ký hoạt động
+                                        Bài viết yêu thích
                                     </h2>
                                 </div>
                             </div>
@@ -76,9 +76,9 @@
                         <div class="user-manage card-item text-center is-hover-shadow py-5">
                                 <!---->
                                 <div class="user-manage-body">
-                                <i class="fas fa-user-alt"></i>
+                                <i class="bx bxs-save"></i>
                                     <h2 class="card-title mt-4">
-                                        My Profile
+                                        Bài viết đã lưu
                                     </h2>
                                 </div>
                             </div>

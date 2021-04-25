@@ -13,7 +13,12 @@ Rails.application.routes.draw do
         end
       end
       resources :comments
-      resources :users
+      resources :users do 
+        collection do
+          get :edit_password
+          get :edit_profile
+        end
+      end
 
       root "dashboard#index"
     end

@@ -11,7 +11,9 @@ function readURL(input) {
     }
 }
 
-    $("#category_avatar").change(function(){
-        $('#blah').removeClass("d-none")
-        readURL(this);
-    });
+$("#category_avatar, #user_avatar").change(function(){
+    $('.current-img').remove()
+    $('#blah').removeClass("d-none")
+    
+    readURL(this);
+});
