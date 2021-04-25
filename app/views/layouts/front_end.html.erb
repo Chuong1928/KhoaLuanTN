@@ -21,7 +21,8 @@
     <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css">
-
+    <!-- toastr Css-->
+    <link href="/admin/assets/libs/toastr/build/toastr.min.css" rel="stylesheet" type="text/css">
     <%# custom css %>
     <%= stylesheet_link_tag 'frontend/all' %>
 
@@ -73,13 +74,16 @@
     <!-- App js -->
     <script src="/admin/assets/js/app.js"></script>
     <script src="/admin/assets/js/test.js"></script>
-
+ <!-- Toast js -->
+    
+    <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
     
      <script>
         <%== "var AUTH_TOKEN = #{form_authenticity_token.inspect};" %>
     </script>
     <!--custom js -->
     <%= javascript_include_tag "front_end/search" %>
+    <%= javascript_include_tag "front_end/comment" %>
 </body>
 
 </html>

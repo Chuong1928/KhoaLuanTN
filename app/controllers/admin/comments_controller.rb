@@ -4,9 +4,8 @@ module Admin
             @search = policy_scope(Comment).ransack(params[:q])
 
             
-            @comments = @search.result.order(created_at: :desc).page(params[:page]).per(5)
+            @comments = @search.result.order(created_at: :asc).page(params[:page]).per(5)
             # 
-            
             #  @post  = Post.new
             respond_to do |format|
                 format.html # index.html.erb
@@ -26,22 +25,18 @@ module Admin
         
         def create
             @comment = Comment.new(comment_params)
-            # @post.title = params[:post][:title]
-            # @post.body = params[:post][:body]
-            # @post.peralink = params[:post][:peralink]
-            # @post.visible = params[:post][:visible]
-           
-             @post.user_id = current_user.id
-            if  @post.save
-                # categories = Category.find(params[:post][:category_ids])
-                @post.category_ids = params[:post][:category_ids] # = categories
-                redirect_to admin_posts_path
-            else
-                p @post.errors.full_messages
-                render :new
+            @comment.user_id = current_user.id
+            @post_id = params[:comment][:post_id]
+            if  @comment.save
+                @this_comment = Post.find(@post_id).comments.last
+                @this_user = Post.find(@post_id).comments.last.user
+                respond_to do |format|
+                    format.js
+                    format.json {render :json => {mes: "Gửi bình luận thành công",this_comment: @this_comment,this_user: @this_user }} # index.html.erb
+                end
+                
             end
         end
-
         def edit    
             @search = policy_scope(Comment).ransack(params[:q])
     
@@ -77,8 +72,8 @@ module Admin
             redirect_to admin_comment_path
         end
         
-        def post_params
-            params.require(:comment).permit(:body)
+        def comment_params
+            params.require(:comment).permit(:body, :post_id)
         end
     end
 
