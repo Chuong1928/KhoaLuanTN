@@ -17,7 +17,7 @@
 
                                         <h1 class=" my-4"><%= @post.title %></h1>
 
-                                        <p><%= Nokogiri::HTML.parse(@post.body).content %></p>
+                                        <p><%= @post.body.html_safe %></p>
                                         
                                         <div class="row task-dates">
                                             <div class="col-sm-4 col-6">

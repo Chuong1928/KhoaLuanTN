@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     def index
 
         @search = policy_scope(Category).ransack(params[:q])
-        @categorys = @search.result.order(position: :asc)
+        @categorys = @search.result.order(position: :asc).page(params[:page]).per(4)
         @list_category = @search.result.order(position: :asc)
 
         @q = Post.ransack(params[:q])

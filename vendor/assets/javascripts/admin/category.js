@@ -44,3 +44,11 @@ if(el != null){
 
 //call selec2
 $('.select2').select2({multiple: true})
+
+$('.title_category, .peralink_category, .slug_category').keyup(function () {
+    let input = $(this).val();
+    let remove_unicode = removeVietnameseTones(input)
+    let final_permalink = get_permalink(remove_unicode)
+    $(".peralink_category").val(final_permalink)
+    $(".slug_category").val(final_permalink)
+});

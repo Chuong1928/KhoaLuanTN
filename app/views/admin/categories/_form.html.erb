@@ -5,7 +5,7 @@
                                                     <div class="form-group row mb-4">
                                                         <label for="taskname" class="col-form-label col-lg-2">Tiêu đề</label>
                                                         <div class="col-lg-10">
-                                                            <%= f.text_field :name, placeholder: 'Tên danh mục ...' ,class: 'form-control title_post'  %>
+                                                            <%= f.text_field :name, placeholder: 'Tên danh mục ...' ,class: 'form-control title_category'  %>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-4">
@@ -13,6 +13,18 @@
                                                         <div class="col-lg-10">
                                                             <div class="">Mô tả ngắn về danh mục ?</div>
                                                             <%= f.text_area :description, class: "form-control" %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-4 d-none">
+                                                        <label for="taskbudget" class="col-form-label col-lg-2">Đường dẫn hiển thị</label>
+                                                        <div class="col-lg-10">
+                                                             <%= f.text_field :permalink ,placeholder: 'link-hien-thi' ,class: 'form-control peralink_category'  %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-4 d-none">
+                                                        <label for="taskbudget" class="col-form-label col-lg-2">Slug</label>
+                                                        <div class="col-lg-10">
+                                                             <%= f.text_field :slug ,class: 'form-control slug_category'  %>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-4">

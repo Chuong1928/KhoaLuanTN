@@ -79,7 +79,7 @@ module Admin
         end
 
         def category_params
-            params.require(:category).permit(:name, :description, :avatar)
+            params.require(:category).permit(:name, :description, :avatar, :slug)
         end
     end    
 end

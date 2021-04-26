@@ -24,13 +24,20 @@ class Post < ApplicationRecord
     #   def to_param
     #     "#{id}-#{slug}"
     #   end
-    before_save :time_read_post
+    before_save :time_read_post, :get_summary_post
 
     def time_read_post
       doc = Nokogiri::HTML(self.body)
       words = doc.content.split(/\s+/).length
       count_word = (words/300.0).ceil
       self.readtime = count_word
+    end
+    
+    def get_summary_post
+      Nokogiri::HTML(p).content.split(/\s+/).take(3).join(" ")
+      doc = Nokogiri::HTML(self.body)
+      summary = doc.content.split(/\s+/).take(50).join(" ")
+      self.summary = summary
     end
     
 end
