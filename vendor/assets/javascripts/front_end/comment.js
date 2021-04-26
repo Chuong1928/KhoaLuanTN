@@ -5,7 +5,7 @@ $('.post-comment').on('click',function(){
     console.log(new_comment);
     console.log(post_id);
     $.ajax({
-        url: "/admin/comments",
+        url: `/post/${post_id}/comments`,
         data: {
             comment: {
                 body: new_comment,
@@ -14,41 +14,34 @@ $('.post-comment').on('click',function(){
             authenticity_token: AUTH_TOKEN
         },
         type: 'POST',
-        dataType: 'json',
+        dataType: 'script',
     }).done(function (data) {
-        notiSuccess(data.mes)
-        console.log(data.this_comment)
-        console.log(data.this_user)
-        $("#list-comment").prepend(`<div class="media py-3 border-bottom ">
-         <img src="${ data.this_user.avatar }" class="avatar-xs mr-3 rounded-circle" alt="img">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1 font-size-15"> ${ data.this_user.name }</h5>
-                    <p class="text-muted">${ data.this_comment.body }</p>
-                    <ul class="list-inline float-sm-right mb-sm-0">
-                        <li class="list-inline-item">
-                            <a href="#"><i class="far fa-thumbs-up mr-1"></i>${ data.this_comment.like}</a>
-                        </li>
-                            <li class="list-inline-item">
-                            <a href="#"><i class="fas fa-thumbs-down mr-1"></i>${ data.this_comment.dislike }</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#"><i class="far fa-comment-dots mr-1"></i> Comment</a>
-                        </li>
-                    </ul>
-                    <div class="text-muted font-size-12"><i class="far fa-calendar-alt text-primary mr-1"></i> 5 hrs ago</div>
-                </div>
-            </div>`);
+        $("#textarea").val("")
+        $(".post-comment").addClass("btn-disabled")
+        $(".post-comment").attr("disabled",true); 
     }).fail(function () {
         let mess = "Cập nhật thất bại";
         notiFail(mess)
     })
 })
 
-    function notiSuccess(mess){
-        toastr["success"](mess);
-    }
+function notiSuccess(mess){
+    toastr["success"](mess);
+}
 
-    function notiFail(mess){
-        toastr["error"](mess);
+function notiFail(mess){
+    toastr["error"](mess);
+}
+
+$("#textarea").keyup(function(){
+    let comment_body = $(this).val();
+   
+    console.log(comment_body);
+    if(comment_body == ""){
+        $(".post-comment").attr("disabled",true);  
+    }else{
+        $(".post-comment").attr("disabled",false);
+        $(".post-comment").removeClass("btn-disabled")
     }
-    
+     
+})

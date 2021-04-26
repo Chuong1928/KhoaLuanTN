@@ -28,13 +28,13 @@ module Admin
             @comment.user_id = current_user.id
             @post_id = params[:comment][:post_id]
             if  @comment.save
-                @this_comment = Post.find(@post_id).comments.last
-                @this_user = Post.find(@post_id).comments.last.user
+                # @this_comment = Post.find(@post_id).comments.last
+                # @this_user = Post.find(@post_id).comments.last.user
+                @list_comments_of_post = Post.find(@post_id).comments
                 respond_to do |format|
-                    format.js
-                    format.json {render :json => {mes: "Gửi bình luận thành công",this_comment: @this_comment,this_user: @this_user }} # index.html.erb
+                    format.js 
+                    # format.json {render :json => {mes: "Gửi bình luận thành công",this_comment: @this_comment, this_user: @this_user }} # index.html.erb
                 end
-                
             end
         end
         def edit    
@@ -69,7 +69,7 @@ module Admin
             @comment = Comment.friendly.find(params[:id])
             authorize @comment
             @comment.destroy
-            redirect_to admin_comment_path
+            redirect_to admin_comments_path
         end
         
         def comment_params

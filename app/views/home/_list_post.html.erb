@@ -1,30 +1,33 @@
-     <% @posts.each do |post| %>
-
-        <div class="post-item shadow mb-2">
-            <div class="item-head d-flex align-item-center">
-                <div class="author-avatar bg-white p-1 rounded">
-                    <img src="/admin/assets/images/users/avatar-1.jpg" class="img-fluid">
-                </div>
-                <div class="post-meta ml-2 flex-grow-1 py-2">
-                    <div class="d-flex align-items-center justify-content-between">
+<!-- post item here -->
+<% @posts.each do |post| %>
+    <div class="post-item shadow mb-2">
+        <div class="item-head d-flex align-item-center">
+            <div class="author-avatar bg-white p-1 rounded">
+                <img src="/admin/assets/images/users/avatar-1.jpg" class="img-fluid">
+            </div>
+            <div class="post-meta ml-2 flex-grow-1 py-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
                         <div>
-                            <div>
-                                <h4 class="d-inline">
-                                    <a href="<%= post_path(post) %>" class="text-dark text-capitalize">
-                                        <%= post.title %>
-                                    </a>
-                                </h4>
-                                <span class="mx-3">-</span>
-                                <span>12 phút đọc</span>
-                            </div>
-                            <div class="author-info">
-                                <p class="mb-0"><%= post.user.name %></p>
-                            </div>
+                            <h5 class="d-inline">
+                                <a href="<%= post_path(post) %>" class="text-dark text-capitalize">
+                                    <%= post.title %>
+                                </a>
+                            </h5>
+                            <span class="mx-3">-</span>
+                            <span>Khoảng <%= post.readtime %> phút đọc</span>
+                        </div>
+                        <div class="author-info">
+                            <p class="mb-0 d-inline-block"><%= post.user.name %></p>
+                            <span class="mx-2">-</span>
+                            <p class="mb-0 d-inline-block"><%= time_ago_in_words(post.created_at) %></p>
+
                         </div>
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
-        <% end %>
+
+    </div>
+<% end %>

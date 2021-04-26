@@ -7,7 +7,7 @@
     <td><%= comment.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
     <td class="d-flex">
         <%= button_to admin_comment_path(comment), method: :delete, data: { "toggle" => "tooltip","original-title" => "Delete" }, :onclick => "return confirm('Bạn có muốn xóa không ?')", class: "text-danger delete mr-3 btn btn-link p-0"  do %>
-        <i class="mdi mdi-close font-size-18"></i>
+          <i class="mdi mdi-close font-size-18"></i>
         <% end %>
     </td>
 </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_095238) do
+ActiveRecord::Schema.define(version: 2021_04_26_071419) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2021_04_25_095238) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "body"
-    t.integer "like"
-    t.integer "dislike"
+    t.integer "like", default: 0
+    t.integer "dislike", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "post_id"

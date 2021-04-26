@@ -16,7 +16,7 @@ $("#q_title_cont").keyup(function(){
             type: 'GET',
             dataType: 'script',
         }).done(function(data){
-            // console.log(data)
+             console.log(data)
         })
-    },1000)
+    },600)
 })

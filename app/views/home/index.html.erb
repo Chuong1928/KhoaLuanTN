@@ -1,43 +1,10 @@
 <div class="row">
     <div class="col-12 col-lg-9" id="list_post">
-        <!-- post item here -->
-        <% @all_posts.each do |post| %>
-
-        <div class="post-item shadow mb-2">
-            <div class="item-head d-flex align-item-center">
-                <div class="author-avatar bg-white p-1 rounded">
-                    <img src="/admin/assets/images/users/avatar-1.jpg" class="img-fluid">
-                </div>
-                <div class="post-meta ml-2 flex-grow-1 py-2">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <div>
-                                <h4 class="d-inline">
-                                    <a href="<%= post_path(post) %>" class="text-dark text-capitalize">
-                                        <%= post.title %>
-                                    </a>
-                                </h4>
-                                <span class="mx-3">-</span>
-                                <span>Khoảng <%= post.readtime%> phút đọc</span>
-                            </div>
-                            <div class="author-info">
-                                <p class="mb-0"><%= post.user.name %></p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <% end %>
-
-
+        <%= render partial: 'list_post' %>
     </div>
     <div class="col-12 col-lg-3"></div>
 
 </div>
-
 
 <!-- end row -->
 

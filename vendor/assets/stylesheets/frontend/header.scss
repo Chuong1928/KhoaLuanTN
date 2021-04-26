@@ -15,8 +15,12 @@
         line-height: 46px;
         font-size: 24px;
     }
+    input.form-control::-webkit-input-placeholder, span {
+        color: white!important;
+    }
 }
 .banner{
     margin-top: 80px;
     background-color: rgb(54, 203, 255);
 }
+
