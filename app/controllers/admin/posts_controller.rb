@@ -69,6 +69,7 @@ module Admin
             @action = "update"
             authorize @post
             if @post.update(post_params)
+                @post.category_ids = params[:post][:category_ids]
                 # @post.save
                 # redirect_to admin_posts_path
 

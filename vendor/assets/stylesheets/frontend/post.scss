@@ -2,11 +2,16 @@
     padding: 10px;
     background-color: #ffffff7d;
     border-radius: 8px;
-    // .summary {
-    //     display: none;
-    // }
+    .summary {
+       font-size: 14px;
+       color:gray;
+    }
     .summry-active{
         color: #5488c7;
+    }
+    .author-info p{
+        font-size: 13px;
+        color:gray;
     }
 }
 .author-avatar {

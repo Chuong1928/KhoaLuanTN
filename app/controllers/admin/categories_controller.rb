@@ -36,12 +36,12 @@ module Admin
             
             # @post = Post.find(params[:id]) 
             #find sẽ bắn ra một Exception nếu không có bất kỳ một record nào được tìm thấy -> web bị crash
-            @category = Category.find_by_id(params[:id])
+            @category = Category.friendly.find(params[:id])
         end
         def  update  
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
-            @category = Category.find_by_id(params[:id]) 
+            @category = Category.friendly.find(params[:id]) 
             authorize @category
             if @category.update(category_params)  
               redirect_to admin_categories_path
@@ -63,11 +63,12 @@ module Admin
            
                 respond_to do |format|
                     format.json {render :json => {mes: "Cập nhật thành công"}} # index.html.erb
-                end
-          
+                end 
+        end
 
-
-            
+        def show   
+            @category = Category.friendly.find(params[:id])
+            @list_post_of_category = @category.posts.page(params[:page]).per(5);
         end
 
         def destroy     

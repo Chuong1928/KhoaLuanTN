@@ -45,3 +45,27 @@ $("#textarea").keyup(function(){
     }
      
 })
+
+$(".delete-comment").click(function(e){
+    let post_id_del = $(".post-body").attr("data-post-id")
+    let comment_id_del = $(".comment-items").attr("data-comment-id")
+    e.preventDefault();
+    console.log(123);
+    $.ajax({
+        url: `/post/${post_id_del}/comments/${comment_id_del}`,
+        data: {
+            comment: {
+                comment_id_del: comment_id_del,
+                post_id_del: post_id_del
+            },
+            authenticity_token: AUTH_TOKEN
+        },
+        type: 'DELETE',
+        dataType: 'json',
+    }).done(function (data) {
+        notiFail(data.mes)
+    }).fail(function () {
+        let mess = "Cập nhật thất bại";
+        notiFail(mess)
+    })
+})

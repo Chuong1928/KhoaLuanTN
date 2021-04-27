@@ -27,6 +27,18 @@ class CommentsController < ApplicationController
             end
         end
     end
+
+    def destroy
+        @comment = Comment.find(params[:comment][:comment_id_del])
+        p @comment
+        authorize @comment
+        if @comment.destroy
+            respond_to do |format|
+
+                format.json {render :json => {mes: "Đã xóa bình luận"}} # index.html.erb
+            end
+        end
+    end
     def comment_params
         params.require(:comment).permit(:body, :post_id)
     end

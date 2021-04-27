@@ -14,7 +14,7 @@
                                     <div class="card-body">
                                         
                                         <%= form_for [:admin, @category], html: {class: "outer-repeater", remote: false,multipart: true } do |f| %>
-                                            <%= render partial: 'form',:locals => {:f => f}%>
+                                            <%= render partial: 'form', :locals => {:f => f}%>
                                              <div class="row justify-content-end">
                                                 <div class="col-lg-10">
                                                     <button type="submit" class="btn btn-primary new-post">Tạo danh mục</button>

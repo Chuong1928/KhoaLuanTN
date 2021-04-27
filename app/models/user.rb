@@ -10,8 +10,13 @@ class User < ApplicationRecord
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+  before_create :default_name
 
   def default_avatar
       avatar.url(:medium)
   end
+  def default_name
+    self.name = self.email.split("@").take(1)[0]
+  end
+
 end
