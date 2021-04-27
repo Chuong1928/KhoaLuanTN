@@ -39,6 +39,28 @@ class CommentsController < ApplicationController
             end
         end
     end
+
+    def edit    
+        @comment = Comment.find(params[:comment][:comment_id_edit])
+        authorize @comment
+    end
+
+    def  update  
+        #    //creat,update,destroy,show,index,new,
+        # @posts = Post.find(params[:id])
+        @post = Post.find(params[:post_id])
+        @comment = Comment.find(params[:comment][:comment_id_edit])
+        p @comment
+        authorize @comment
+        if @comment.update(comment_params)
+            respond_to do |format|
+                format.js
+            end
+        else
+            flash[:alert] = @comment.errors.full_messages.join(". ")
+
+        end 
+    end
     def comment_params
         params.require(:comment).permit(:body, :post_id)
     end
