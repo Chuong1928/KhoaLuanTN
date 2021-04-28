@@ -80,7 +80,10 @@ $(".delete-comment").click(function(e){
 
 // chỉnh sửa comemnt
 
-    $(".edit-comment").on('click',function(e){
+    $("#list-comment").on('click', '.edit-comment', function(e){
+        console.log(e);
+        console.log(e.currentTarget);
+        console.log(this);
         let el = $(this)
         let post_id_edit = $(".post-body").attr("data-post-id")
         let comment_id_edit = $(".comment-items").attr("data-comment-id")
