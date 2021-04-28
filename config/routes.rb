@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         end
       end
       resources :comments
+      resources :tags
       resources :users do 
         collection do
           get :edit_password

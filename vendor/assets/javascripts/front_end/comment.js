@@ -1,29 +1,29 @@
 // gửi comment
-$('.post-comment').on('click',function(){
-    let new_comment = $("#textarea").val()
-    let post_id = $(".post-body").attr("data-post-id")
-    console.log(new_comment);
-    console.log(post_id);
-    $.ajax({
-        url: `/post/${post_id}/comments`,
-        data: {
-            comment: {
-                body: new_comment,
-                post_id: post_id
+    $(document).on('click', '.post-comment',function(){
+        let new_comment = $("#textarea").val()
+        let post_id = $(".post-body").attr("data-post-id")
+        // console.log(new_comment);
+        console.log("123");
+        $.ajax({
+            url: `/post/${post_id}/comments`,
+            data: {
+                comment: {
+                    body: new_comment,
+                    post_id: post_id
+                },
+                authenticity_token: AUTH_TOKEN
             },
-            authenticity_token: AUTH_TOKEN
-        },
-        type: 'POST',
-        dataType: 'script',
-    }).done(function (data) {
-        $("#textarea").val("")
-        $(".post-comment").addClass("btn-disabled")
-        $(".post-comment").attr("disabled",true); 
-    }).fail(function () {
-        let mess = "Cập nhật thất bại";
-        notiFail(mess)
+            type: 'POST',
+            dataType: 'script',
+        }).done(function (data) {
+            $("#textarea").val("")
+            $(".post-comment").addClass("btn-disabled")
+            $(".post-comment").attr("disabled",true); 
+        }).fail(function () {
+            let mess = "Cập nhật thất bại";
+            notiFail(mess)
+        })
     })
-})
 
 function notiSuccess(mess){
     toastr["success"](mess);
@@ -47,7 +47,7 @@ $("#textarea").keyup(function(){
 })
 
 // xóa comment
-$(".delete-comment").click(function(e){
+$(document).on('click','.delete-comment',function(e){
     let el = $(this)
     let post_id_del = $(".post-body").attr("data-post-id")
     let comment_id_del = $(".comment-items").attr("data-comment-id")

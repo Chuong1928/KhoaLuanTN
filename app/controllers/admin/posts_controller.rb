@@ -28,7 +28,7 @@ module Admin
             # @posts = @search.result.page(params[:page]).per(5)
             #    //creat,update,destroy,show,index,new,
             @post  = Post.new
-            
+            @tags = Tag.all
         end
         
         def create
@@ -43,6 +43,22 @@ module Admin
             if  @post.save
                 # categories = Category.find(params[:post][:category_ids])
                 @post.category_ids = params[:post][:category_ids] # = categories
+                p params[:post][:tag_ids]
+                params[:post][:tag_ids].each do |tag_id|
+                    if tag_id != "" &&  Tag.where(id: tag_id).count == 0
+                        p tag_id
+                        p if tag_id != "" &&  Tag.where(id: tag_id).count
+                        @new_tag = Tag.new()
+                        @last_tag_id = Tag&.last&.id || 0
+                        @new_tag.id = @last_tag_id + 1
+                        @new_tag.name = tag_id
+                        @new_tag.save
+                        @post.category_ids
+                        p 'chua vào đây'
+                    end
+                end
+
+                # @post.tag_ids = params[:post][:tag_ids]
                 redirect_to admin_posts_path
             else
                 p @post.errors.full_messages
@@ -50,7 +66,8 @@ module Admin
             end
         end
 
-        def edit    
+        def edit 
+            @tags = Tag.all
             @search = policy_scope(Post).ransack(params[:q])
 
             @posts = @search.result.page(params[:page]).per(5)
@@ -65,11 +82,13 @@ module Admin
         def  update  
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
+            @tags = Tag.all
             @post = Post.friendly.find params[:id]
             @action = "update"
             authorize @post
             if @post.update(post_params)
                 @post.category_ids = params[:post][:category_ids]
+                @post.tag_ids = params[:post][:tag_ids]
                 # @post.save
                 # redirect_to admin_posts_path
 
@@ -96,5 +115,6 @@ module Admin
         def post_params
             params.require(:post).permit(:body, :title, :permalink, :slug, :visible)
         end
+
     end
 end

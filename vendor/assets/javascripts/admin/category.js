@@ -43,7 +43,10 @@ if(el != null){
 }
 
 //call selec2
-$('.select2').select2({multiple: true})
+$('.select2').select2({
+    tags: true,
+    tokenSeparators: [',', ' ']
+})
 
 $('.title_category, .peralink_category, .slug_category').keyup(function () {
     let input = $(this).val();

@@ -73,7 +73,7 @@ module Admin
 
         def destroy     
             #    //creat,update,destroy,show,index,new,
-            @category = Category.find(params[:id])
+            @category = Category.friendly.find(params[:id])
             authorize @category
             @category.destroy
             redirect_to admin_categories_path

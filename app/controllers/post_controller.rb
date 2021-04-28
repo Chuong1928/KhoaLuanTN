@@ -27,4 +27,8 @@ class PostController < ApplicationController
         @post = Post.friendly.find(params[:id])
         # Post.find(13).comments.count
     end
+    def create
+        
+    end
+
 end
