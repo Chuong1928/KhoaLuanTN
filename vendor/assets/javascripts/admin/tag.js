@@ -16,7 +16,7 @@ $('.title_tag, .peralink_tag, .slug_tag').keyup(function () {
    
 });
 
-$('.select2').select2({
+$('.select2_tag').select2({
     tags: true,
     tokenSeparators: [',', ' ']
 })

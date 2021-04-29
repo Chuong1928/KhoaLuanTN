@@ -20,7 +20,7 @@
                                                         <label for="taskname" class="col-form-label col-lg-2">Tag</label>
                                                         <div class="col-lg-10">
                                                             <%= f.select :tag_ids, options_for_select(Tag.all.collect{ |p| [ p.name, p.id ] }, @post.tag_ids),
-                                                            {}, { :multiple => true,  class: 'select2 form-control select2-multiple title_tag' } %>
+                                                            {}, { :multiple => true,  class: 'select2_tag form-control select2-multiple title_tag' } %>
                                                             <ul class="list-group d-none" id="myList">
                                                                 <% @tags.each do |tag| %>
                                                                     <li class="list-group-item"><%= tag.name %></li>
