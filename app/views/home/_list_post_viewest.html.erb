@@ -1,0 +1,31 @@
+     <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Bài viết nổi bật</h4>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-centered table-nowrap">
+                                                <tbody>
+                                                <% @posts_viewest.each do |post| %>
+                                                    <tr>
+                                                        <td>
+                                                            <h5 class="font-size-14 m-0"><a href="" class="text-dark"><%= post.title %></a>
+                                                            </h5>
+                                                             <ul class="list-inline float-sm-left my-2 w-100">
+                                                                <li class="list-inline-item">
+                                                                    <i class="mdi mdi-eye-outline " data-toggle="tooltip"
+                                                                     data-original-title="Review"></i> <%= post.views %>
+                                                                </li>
+                                                                
+                                                            </ul>
+                                                            <ul class="list-inline float-sm-left my-2 w-100">
+                                                                <a href="#" class="text-dark"><%= post.user.nickname %></a>
+                                                            </ul>
+                                                        </td>
+
+                                                    </tr>
+                                                <% end %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
