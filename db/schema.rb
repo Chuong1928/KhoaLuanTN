@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_165100) do
+ActiveRecord::Schema.define(version: 2021_05_05_100819) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_165100) do
     t.string "slug"
     t.string "readtime"
     t.text "summary"
+    t.integer "vote_point"
     t.index ["slug"], name: "index_posts_on_slug"
   end
 

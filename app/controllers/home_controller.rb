@@ -9,7 +9,8 @@ class HomeController < ApplicationController
         @q = Post.ransack(params[:q])
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(5)
         @posts_viewest = @q.result.visible.order(views: :desc).limit(5)
-
+        
+        @list_tag = 
         
         respond_to do |format|
             format.html # index.html.erb
