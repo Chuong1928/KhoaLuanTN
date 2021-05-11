@@ -1,7 +1,7 @@
 module Admin
     class TagsController < AdminController
         def index
-            @tags = Tag.all.page(params[:page]).per(5)
+            @tags = Tag.all.page(params[:page]).per(100)
         end
 
         def new     

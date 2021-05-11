@@ -22,7 +22,7 @@ $('.select2_tag').select2({
     createTag: function (params) {
         var term = $.trim(params.term);
     
-        if (term === '') {
+        if (term === '' || term.length > 10) {
           return null;
         }
     

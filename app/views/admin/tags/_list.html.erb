@@ -1,15 +1,11 @@
 <% @tags.each do |tag|  %>
 <tr>
     <td><%= tag.name %></td>
-    <td><%=  1 %></td>
-    <td><%=  tag.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
-    <td><%= tag.updated_at.try(:strftime, "%d-%m-%Y  %T") %></td>
-    <td class="d-flex">
-        <a href="<%= edit_admin_tag_path(tag) %>" class="mr-3 text-primary"
-            data-toggle="tooltip" data-original-title="Edit"><i
-                class="mdi mdi-pencil font-size-18"></i></a>
-        <%= button_to admin_tag_path(tag), method: :delete, data: { "toggle" => "tooltip","original-title" => "Delete" }, :onclick => "return confirm('Bạn có muốn xóa không ?')", class: "text-danger delete mr-3 btn btn-link p-0"  do %>
-        <i class="mdi mdi-close font-size-18"></i>
+    <td><%= tag.posts.count %></td>
+    <td><%=  format_date(tag.created_at) %></td>
+    <td class="text-center">
+        <%= button_to admin_tag_path(tag), method: :delete, data: { "toggle" => "tooltip","original-title" => "Delete" }, :onclick => "return confirm('Bạn có muốn xóa không ?')", class: "delete btn btn-danger btn-sm"  do %>
+            Xóa
         <% end %>
     </td>
 </tr>
