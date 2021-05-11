@@ -27,8 +27,15 @@ class PostController < ApplicationController
         @post = Post.friendly.find(params[:id])
         # Post.find(13).comments.count
     end
-    def create
-        
+    def update
+        @post = Post.friendly.find params[:id]
+        authorize @post
+        current_views = @post.views;
+         @post.update(views: current_views+1)
+       
+           # redirect_to admin_posts_path
+    
     end
 
+    
 end
