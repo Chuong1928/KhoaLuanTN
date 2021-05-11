@@ -1,6 +1,6 @@
                                         
                                                          
-                                        <%= form_for [:admin, @post], html: {class: "outer-repeater", remote: false} do |f| %>
+                                        <%= form_for [:admin, @post], html: {class: "outer-repeater admin-form-post", remote: false} do |f| %>
                                             <div class="outer">
                                                 <div class="outer">
                                                     <div class="form-group row mb-4">
@@ -21,11 +21,6 @@
                                                         <div class="col-lg-10">
                                                             <%= f.select :tag_ids, options_for_select(Tag.all.collect{ |p| [ p.name, p.id ] }, @post.tag_ids),
                                                             {}, { :multiple => true,  class: 'select2_tag form-control select2-multiple title_tag' } %>
-                                                            <ul class="list-group d-none" id="myList">
-                                                                <% @tags.each do |tag| %>
-                                                                    <li class="list-group-item"><%= tag.name %></li>
-                                                                <% end %>
-                                                            </ul>  
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-4">

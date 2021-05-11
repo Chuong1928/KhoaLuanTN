@@ -32,36 +32,20 @@ module Admin
         end
         
         def create
-            @post = Post.new(post_params)
-            # @post.title = params[:post][:title]
-            # @post.body = params[:post][:body]
-            # @post.peralink = params[:post][:peralink]
-            # @post.visible = params[:post][:visible]
-           
+            # create new tag first
+            create_tag
 
-             @post.user_id = current_user.id
+            @post = Post.new(post_new_params)
+            @post.user_id = current_user.id
+
             if  @post.save
-                # categories = Category.find(params[:post][:category_ids])
-                @post.category_ids = params[:post][:category_ids] # = categories
-                p params[:post][:tag_ids]
-                params[:post][:tag_ids].each do |tag_id|
-                    if tag_id != "" &&  Tag.where(id: tag_id).count == 0
-                        p tag_id
-                        p if tag_id != "" &&  Tag.where(id: tag_id).count
-                        @new_tag = Tag.new()
-                        @last_tag_id = Tag&.last&.id || 0
-                        @new_tag.id = @last_tag_id + 1
-                        @new_tag.name = tag_id
-                        @new_tag.save
-                        @post.category_ids
-                        p 'chua vào đây'
-                    end
-                end
+                # add category 
+                @post.category_ids = params[:post][:category_ids]
+                # add tag
+                @post.tag_ids = params[:post][:tag_ids]
 
-                # @post.tag_ids = params[:post][:tag_ids]
                 redirect_to admin_posts_path
             else
-                p @post.errors.full_messages
                 render :new
             end
         end
@@ -79,29 +63,24 @@ module Admin
             authorize @post
         end
 
-        def  update  
+        def  update 
+            # create new tag first
+            create_tag
             #    //creat,update,destroy,show,index,new,
             # @posts = Post.find(params[:id])
             @tags = Tag.all
             @post = Post.friendly.find params[:id]
             @action = "update"
             authorize @post
+
             if @post.update(post_params)
-                @post.category_ids = params[:post][:category_ids]
-                @post.tag_ids = params[:post][:tag_ids]
-                # @post.save
-                # redirect_to admin_posts_path
 
                 redirect_to admin_posts_path
             else
                 
                 flash[:alert] = @post.errors.full_messages.join(". ")
                 render :edit
-            end
-           
-             
-
-            
+            end   
         end
 
         def destroy     
@@ -111,8 +90,23 @@ module Admin
             @post.destroy
             redirect_to admin_posts_path
         end
+
+
+        def create_tag
+            params[:new_tags] = params[:new_tags].split(',')
+            params[:post][:tag_ids] =  params[:post][:tag_ids] - params[:new_tags]
+
+            params[:new_tags].each do |new_tag|
+                tag = Tag.create(name: new_tag)
+                params[:post][:tag_ids].push(tag.id)
+            end
+        end
         
         def post_params
+            params.require(:post).permit(:body, :title, :permalink, :slug, :visible, :category_ids => [], :tag_ids => [])
+        end
+
+        def post_new_params
             params.require(:post).permit(:body, :title, :permalink, :slug, :visible)
         end
 
