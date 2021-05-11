@@ -44,9 +44,9 @@
                             <li class="list-inline-item">
                                 <div class="list_author_comment d-flex">
                                     <% post.comments.select(:user_id).distinct.each do |comment| %>
-                                        <div class="avatar_author_comment rounded mx-1">
+                                        <div class=" rounded mx-1">
                                             <a href="#"  data-toggle="tooltip" data-original-title="<%= comment.user.name %>">
-                                                <img src="<%= comment.user.avatar.url %>" class="img-fluid rounded-circle" >
+                                                <img src="<%= comment.user.avatar.url %>" class="img-fluid rounded-circle avatar_author_comment" >
                                             </a>
                                         </div>
                                     <% end %>

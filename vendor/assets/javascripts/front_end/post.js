@@ -11,22 +11,26 @@ $(".with-summary").click(function(event){
 let flag = 0;
 $(document).scroll(function(){
     let position = window.pageYOffset
-  //  console.log(position);
-    if(position > 296 && position < 435){
+    let postposition = $("#comment-and-hotpost").offset().top
+    console.log(position);
+    console.log(postposition);
+    if(position > 280){
         if(flag == 0){
-            $(".list-posts-views").addClass("sticky-top-custom")
+            $(".avatar-user").removeClass("d-none")
+            $(".post-action").addClass("fixed-left")
         }
         flag = 1;
     }
-    if(position > 435 ){
+    // if(position > 435 ){
+    //     if(flag == 1){
+    //         $(".list-posts-views").removeClass("sticky-top-custom")
+    //         flag = 0 ;
+    //     }
+    // }
+    if(position < 280 || position > postposition - 250){
         if(flag == 1){
-            $(".list-posts-views").removeClass("sticky-top-custom")
-            flag = 0 ;
-        }
-    }
-    if(position < 200){
-        if(flag == 1){
-            $(".list-posts-views").removeClass("sticky-top-custom")
+            $(".avatar-user").addClass("d-none")
+            $(".post-action").removeClass("fixed-left")
             flag = 0 ;
         }
     }

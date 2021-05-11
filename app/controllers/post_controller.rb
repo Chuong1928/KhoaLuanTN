@@ -29,7 +29,7 @@ class PostController < ApplicationController
     end
     def update
         @post = Post.friendly.find params[:id]
-        authorize @post
+        
         current_views = @post.views;
          @post.update(views: current_views+1)
        

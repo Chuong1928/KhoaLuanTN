@@ -15,7 +15,7 @@
                             <a href="#"><i class="far fa-comment-dots mr-1"></i> Comment</a>
                         </li>
                     </ul>
-                    <div class="text-muted font-size-12"><i class="far fa-calendar-alt text-primary mr-1"></i> 5 hrs ago</div>
+                    <div class="text-muted font-size-12"><i class="far fa-calendar-alt text-primary mr-1"></i><%= time_ago_in_words(comment.created_at) %></div>
                 </div>
             </div>
         <% end %>

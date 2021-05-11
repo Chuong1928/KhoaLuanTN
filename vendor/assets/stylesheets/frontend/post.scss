@@ -33,3 +33,25 @@
 //     position: fixed;
 //     top: 10%;
 // }
+
+.top-100{
+    top: 100px;
+}
+.fs-40px{
+    font-size: 40px;
+}
+.fixed-left{
+    position: fixed;
+    top: 100px;
+    z-index: 1000;
+    transform: translate(10px, 10px);
+}
+.read-more:after{
+    content: '';
+    display: block;
+    height: 3px;
+    background-color: #5488c7;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

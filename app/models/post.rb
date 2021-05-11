@@ -38,7 +38,7 @@ class Post < ApplicationRecord
     def get_summary_post
       Nokogiri::HTML(p).content.split(/\s+/).take(3).join(" ")
       doc = Nokogiri::HTML(self.body)
-      summary = doc.content.split(/\s+/).take(50).join(" ")
+      summary = doc.content.split(/\s+/).take(30).join(" ")
       self.summary = summary
     end
     
