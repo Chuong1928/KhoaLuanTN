@@ -13,3 +13,13 @@
     width: 100px;
     height: 100px;
 }
+
+
+/* category */
+.preview-avatar-category {
+    max-width: 200px;
+}
+/* ghost class for drag item */
+.ghost-item .card{
+    background-color: #6685e12e;
+}

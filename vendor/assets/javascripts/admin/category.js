@@ -5,6 +5,7 @@ if(el != null){
         swapThreshold: 1,
         animation: 150,
         handle: ".btn-drag",
+        ghostClass: "ghost-item",
         onUpdate: function ( /**Event*/ evt) {
             updatePosition()
         }
