@@ -46,6 +46,12 @@
     z-index: 1000;
     transform: translate(10px, 10px);
 }
+.font-size-30{
+    font-size: 30px;
+}
+.font-size-20{
+    font-size: 20px;
+}
 .read-more:after{
     content: '';
     display: block;
@@ -54,4 +60,15 @@
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+.hidden-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.border-custom{
+    border: 1px solid;
+    border-radius: 50%;
 }
