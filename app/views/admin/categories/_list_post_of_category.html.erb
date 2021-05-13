@@ -11,7 +11,7 @@
             <%= category.name + " ," %>
             <% end %>
             </td>
-        <td><%=  Post.find(post.id).user.nickname %></td>
+        <td><%=  Post.find(post.id).user.name %></td>
         <td><%=  post.created_at.try(:strftime, "%d-%m-%Y   %T") %></td>
         <td><%= post.updated_at.try(:strftime, "%d-%m-%Y  %T") %></td>
         <td><%= post.views %></td>

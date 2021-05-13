@@ -13,7 +13,7 @@ $(document).scroll(function(){
     let position = window.pageYOffset
     let currenoffset = $("#post-for-category").offset()
     if(currenoffset){
-        let postposition = currenoffset.top - 100
+        let postposition = currenoffset.top - 200
         console.log(position);
         console.log(postposition);
         if(position > 280){

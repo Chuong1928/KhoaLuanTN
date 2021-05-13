@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_143339) do
+ActiveRecord::Schema.define(version: 2021_05_13_031351) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(version: 2021_05_11_143339) do
     t.string "name"
     t.string "address"
     t.integer "phone"
-    t.string "nickname"
     t.string "birthday"
     t.string "status"
     t.string "avata"

@@ -24,8 +24,8 @@
                                             <img src="<%= @post.user.avatar.url %>" alt="" class="avatar-sm mr-4 rounded-circle">
 
                                             <div class="media-body overflow-hidden">
-                                                <h5 class="text-truncate font-size-15"><%= @post.user.nickname %></h5>
-                                                <p class="text-muted"><%= @post.user.name %></p>
+                                                <h5 class="text-truncate font-size-15"><%= @post.user.name %></h5>
+                                                <p class="text-muted"><%= @post.user.email %></p>
                                             </div>
                                             <div class= "post-infor">
                                                  <div>
@@ -95,7 +95,7 @@
 
                             <div class="col-lg-3" id="">
 
-                                        <h3 class=" mb-3 read-more">Xem thêm từ <%= @post.user.nickname %> </h3>
+                                        <h3 class=" mb-3 read-more">Xem thêm từ <%= @post.user.name %> </h3>
                                         <% @post.user.posts.order(created_at: :DESC).limit(5).each do |post| %>
                                         
                                             <div class="card border-bottom shadow-sm py-1 mb-2">
@@ -134,9 +134,9 @@
                                                 <div class="card border-bottom shadow-sm py-1 mb-2">
                                                     <div class="card-body">
                                                     <a href="<%= post_path(post) %>" class="text-dark text-capitalize">
-                                                        <h4 class="card-title"><%= post.title %></h4>
+                                                        <h4 class="card-title hidden-text" style="height: 60px"><%= post.title %></h4>
                                                     </a>
-                                                    <a href="#"><%= post.user.nickname %></a>
+                                                    <a href="#"><%= post.user.name %></a>
                                                      <p class="card-text my-2"><small class="text-muted">Khoảng <%= post.readtime %> phút đọc</small></p>
                                                      <ul class="list-inline float-sm-left my-1 w-100">
                                                                 <li class="list-inline-item">

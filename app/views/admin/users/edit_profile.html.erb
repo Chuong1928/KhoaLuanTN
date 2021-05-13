@@ -35,20 +35,32 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row mb-4">
-                                                <label for="taskname" class="col-form-label col-lg-2">Tên hiển thị (Nickname)</label>
-                                                <div class="col-lg-10">
-                                                    <%= f.text_field :nickname, placeholder: 'Tên hiển thị ...' ,class: 'form-control title_post'  %>
-                                                </div>
-                                            </div>
+                                          
                                             <div class="form-group row mb-4">
                                                 <label for="taskname" class="col-form-label col-lg-2">Email</label>
                                                 <div class="col-lg-10">
-                                                    <%= f.text_field :email, placeholder: 'Email...' ,class: 'form-control title_post'  %>
+                                                    <%= f.text_field :email, placeholder: 'Email...' ,class: 'form-control bg-light ',disabled: "disabled"  %>
                                                 </div>
                                             </div>
 
-                                            
+                                            <div class="form-group row mb-4">
+                                                <label for="taskname" class="col-form-label col-lg-2">Địa chỉ</label>
+                                                <div class="col-lg-10">
+                                                    <%= f.text_field :address, placeholder: 'Địa chỉ ...' ,class: 'form-control '  %>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <label for="taskname" class="col-form-label col-lg-2">Số điện thoại</label>
+                                                <div class="col-lg-10">
+                                                    <%= f.text_field :phone, placeholder: 'Số điện thoại ...' ,class: 'form-control '  %>
+                                                </div>
+                                            </div>
+                                             <div class="form-group row mb-4">
+                                                <label for="taskname" class="col-form-label col-lg-2">Ngày sinh</label>
+                                                <div class="col-lg-10">
+                                                    <%= f.date_field :birthday, :value => @user.birthday, placeholder: 'Ngày sinh ...' ,class: 'form-control' %>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row justify-content-end">
