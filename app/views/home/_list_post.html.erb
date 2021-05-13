@@ -12,12 +12,58 @@
             <div class="post-meta ml-2 flex-grow-1 py-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="post-detal">
-                      <div class="author-info pb-2">
-                            <a href="#"><%= post.user.name %></a>
-                            <span class="mx-2">-</span>
-                            <p class="mb-0 d-inline-block"><%= time_ago_in_words(post.created_at) %></p>
-                            <span class="mx-3">-</span>
-                            <span>Khoảng <%= post.readtime %> phút đọc</span>
+                      <div class="author-info pb-2 position-relative">
+                                <div class="user-name">
+                                        <a href="#"><%= post.user.name %> </a>
+                                          <span class="mx-2">-</span>
+                                        <p class="mb-0 d-inline-block"><%= time_ago_in_words(post.created_at) %></p>
+                                        <span class="mx-3">-</span>
+                                        <span>Khoảng <%= post.readtime %> phút đọc</span>
+                           
+                                        <div class="card m-0 bg-light hover-info-user">
+                                                    <div class="card-body p-0">
+                                                        <div class="d-flex align-items-center">
+                                                                <div class="author-avatar bg-light p-1 rounded">
+                                                                    <img src="/admin/assets/images/users/avatar-1.jpg" class="img-fluid rounded-circle">
+                                                                    
+                                                                </div>
+                                                                <div class="px-2 card-body">
+                                                                    <a href="#"> <%= post.user.name %></a>
+                                                                    <p class="mb-0"><%= post.user.email %></p>
+                                                                    <ul class="list-inline float-sm-left my-1 w-100">
+                                                                        <li class="list-inline-item">
+                                                                            <i class="mdi mdi-eye-outline " data-toggle="tooltip" data-original-title="Views" 
+                                                                            aria-describedby="tooltip323106"></i> <%= post.user.posts.count %>
+                                                                        
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="mdi mdi-comment-text-multiple " data-toggle="tooltip" data-original-title="Comments" 
+                                                                            aria-describedby="tooltip323106"></i> <%= post.comments.count %>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="d-flex justify-content-around">
+                                                            <li class="list-inline-item">
+                                                                <div class="list_author_follow d-flex">
+                                                                    <% post.comments.select(:user_id).distinct.each do |comment| %>
+                                                                        <div class=" rounded mx-1">
+                                                                            <a href="#"  data-toggle="tooltip" data-original-title="<%= comment.user.name %>">
+                                                                                <img src="<%= comment.user.avatar.url %>" class="img-fluid rounded-circle avatar_author_follow" >
+                                                                            </a>
+                                                                        </div>
+                                                                    <% end %>
+                                                                </div>
+                                                            </li>
+                                                            <button class="btn btn-primary mx-3 mb-3"><i class="mdi mdi-account-multiple-plus"></i>Theo dõi</button>  
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                </div>
+                                
+                               
+                           
                         </div>
                         <div>
                             <h5 class="d-inline mb-0">

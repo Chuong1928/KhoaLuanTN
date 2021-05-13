@@ -64,27 +64,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex ">
-                                            <div class="list-tag">
-                                                <% @post.tags.each do |tag| %>
-                                                    <a href="#" class="badge badge-soft-primary font-size-11 m-1 p-2"><%= tag.name %></a>
-                                                <% end %>
-                                            </div>
-                                            
-                                    </div>
+                                      
                                         <p><%= @post.body.html_safe %></p>
                                         <div class="row task-dates">
                                             <div class="col-sm-4 col-6">
                                                 <div class="mt-4">
-                                                    <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Start Date</h5>
-                                                    <p class="text-muted mb-0">08 Sept, 2019</p>
+                                                    <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Ngày đăng</h5>
+                                                    <p class="text-muted mb-0"><%= @post.created_at.try(:strftime, "%d-%m-%Y   %T") %></p>
                                                 </div>
-                                            </div>
+                                            </div>      
     
                                             <div class="col-sm-4 col-6">
                                                 <div class="mt-4">
-                                                    <h5 class="font-size-14"><i class="bx bx-calendar-check mr-1 text-primary"></i> Due Date</h5>
-                                                    <p class="text-muted mb-0">12 Oct, 2019</p>
+                                                    <h5 class="font-size-14"><i class="bx bx-calendar-check mr-1 text-primary"></i> Tag</h5>
+                                                    <div class="d-flex ">
+                                                        <div class="list-tag">
+                                                            <% @post.tags.each do |tag| %>
+                                                                <a href="#" class="badge badge-soft-primary font-size-11 m-1 p-2"><%= tag.name %></a>
+                                                            <% end %>
+                                                        </div>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
