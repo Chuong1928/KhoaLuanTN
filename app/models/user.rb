@@ -15,8 +15,17 @@ class User < ApplicationRecord
   def default_avatar
       avatar.url(:medium)
   end
+
   def default_name
     self.name = self.email.split("@").take(1)[0]
+  end
+
+  def posts_count
+    posts.count
+  end
+
+  def followers_count
+    1
   end
 
 end
