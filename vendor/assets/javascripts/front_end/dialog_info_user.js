@@ -13,7 +13,7 @@ class DialogInfoUser {
     handleHover() {
         let self = this;
         // bind event client hover user name
-        $(self.class_hover).mouseenter(function() {
+        $(document).on("mouseenter",self.class_hover, function(){
             $(this).css('color', 'blue')
             // check cache data
             // ton tai roi => hien ra
@@ -24,11 +24,23 @@ class DialogInfoUser {
 
             self.processPopup(this);
             self.hoverEvent(current_id);
-        })
+        } )
+        // $(self.class_hover).mouseenter(function() {
+        //     $(this).css('color', 'blue')
+        //     // check cache data
+        //     // ton tai roi => hien ra
+        //     // chua co thi hien dialog loading
+        //     // get data
+        //     // hien ra
+        //     let current_id = $(this).data().idUser
+
+        //     self.processPopup(this);
+        //     self.hoverEvent(current_id);
+        // })
 
 
         $('body').mousemove(function(e) {
-            console.log(e)
+            //console.log(e)
             if($(e.target).closest(self.class_hover + ', .dialog-user-info').length == 0) {
                 self.hidePopup();
             }
@@ -72,7 +84,7 @@ class DialogInfoUser {
 
 
         if(window_height/2 > offset_viewport_top) {
-            console.log(offset.top + target.innerHeight() + 10)
+            //console.log(offset.top + target.innerHeight() + 10)
             // hien o duoi
             this.popup.css('top', offset.top + target.innerHeight() + 10);
             this.popup.addClass('on-bottom');
@@ -89,7 +101,10 @@ class DialogInfoUser {
 
     }
     hidePopup() {
-        this.popup.removeClass('active');
+        if(this.popup){
+            this.popup.removeClass('active');
+        }
+       
     }
     showPopup() {
         // hien thi len = cach add class active
@@ -130,7 +145,7 @@ class DialogInfoUser {
                         <!--  -->
                     </div>
                     <div>
-                        <button class="btn btn-outline-primary btn-sm">Theo dõi</button>
+                        <button class="btn btn-outline-primary btn-sm btn-follow">Theo dõi</button>
                     </div>
                 </div>
             </div>
