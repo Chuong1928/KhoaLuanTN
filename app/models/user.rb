@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def followers_count
-    1
+    followers.count
   end
 
 end

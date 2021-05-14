@@ -81,6 +81,25 @@
 }
 
 
+
+.show-info-user {
+    position: relative;
+    &:after, &:before {
+        content: '';
+        display: block;
+        height: 10px;
+        background-color: transparent;
+        width: 100%;
+        left: 0;
+        position: absolute;
+    }
+    &:after {
+        bottom: -10px;
+    }
+    &:before {
+        top: -10px;
+    }
+}
 // dialog info user
 .dialog-user-info  {
     position: absolute;
