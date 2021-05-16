@@ -53,18 +53,22 @@ module Admin
         end
 
         def edit_profile
-            @user = User.find(current_user.id)
+            if params[:id].nil?
+                @user = User.find(current_user.id)
+            else 
+                @user = User.find(params[:id])
+            end
         end
 
         def  update 
-            @user = User.find(current_user.id)
+            @user = User.find(params[:id])
            
             authorize @user
             if @user.update(user_params)
                 # @post.save
                 # redirect_to admin_posts_path
                  flash[:notice] = "Cập nhật thành công"
-                 redirect_to edit_profile_admin_users_path
+                 redirect_to admin_users_path
             else
                 
                 flash[:alert] = @user.errors.full_messages.join(". ")
@@ -75,7 +79,7 @@ module Admin
         end
 
         def user_params
-            params.require(:user).permit(:name, :nickname, :birthday, :address, :phone, :avatar)
+            params.require(:user).permit(:name, :nickname, :birthday, :address, :phone, :avatar, :role)
         end
     end    
 end

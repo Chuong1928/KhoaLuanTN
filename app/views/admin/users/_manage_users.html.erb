@@ -62,14 +62,11 @@
                                                             <td>
                                                                  <ul class="list-inline font-size-20 contact-links mb-0">
                                                                         <li class="list-inline-item px-2">
-                                                                             <a href="#" class="mr-3 text-primary" data-toggle="tooltip"
-                                                                    data-original-title="Review"><i class="mdi mdi-monitor-eye font-size-18"></i></a>
+                                                                            <a href="<%= edit_admin_user_path(user) %>" class="mr-3 text-primary btn btn-outline-warning" data-toggle="tooltip">
+                                                                                <i class="mdi mdi-pencil font-size-18"></i> Chỉnh sửa
+                                                                            </a>
                                                                         </li>
-                                                                        <li class="list-inline-item px-2">
-                                                                           <%= button_to admin_post_path(user), method: :delete, data: { "toggle" => "tooltip","original-title" => "Delete" }, :onclick => "return confirm('Bạn có muốn xóa không ?')", class: "text-danger delete mr-3 btn btn-link p-0"  do %>
-                                                                <i class="mdi mdi-close font-size-18"></i>
-                                                                <% end %>
-                                                                        </li>
+                                                    
                                                                  </ul>
                                                             </td>
                                                         </tr>

@@ -17,15 +17,15 @@ class UserPolicy < ApplicationPolicy
     end
 
     def edit?
-        scope.id == user.id   
+        scope.id == user.id  || user.role == "super_admin"
     end
 
     def update?
-        scope.id == user.id 
+        scope.id == user.id || user.role == "super_admin"
     end
 
     def destroy?
-        scope.user_id == user.id 
+        scope.user_id == user.id || user.role == "super_admin"
     end
 
     def show?
