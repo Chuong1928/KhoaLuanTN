@@ -35,3 +35,8 @@
     max-width: 40px;
     object-fit: cover;
 }
+.follower-icon-custom{
+    transform: rotate(45deg);
+    padding: 0px;
+    border: none;
+}

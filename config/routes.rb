@@ -20,7 +20,8 @@ Rails.application.routes.draw do
           get :edit_profile
         end
       end
-
+      
+      resources :authors
       root "dashboard#index"
     end
     

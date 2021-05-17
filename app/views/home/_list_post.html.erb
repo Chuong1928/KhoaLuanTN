@@ -20,7 +20,17 @@
                     <div class="post-detal">
                       <div class="author-info pb-2 position-relative">
                                 <div class="user-name">
-                                    <a href="#" class="show-info-user" data-id-user="<%= post.user.id %>"><%= post.user.name %> </a>
+                                    <% if user_signed_in? %>
+                                        <a href="<%= author_path(post.user) %>" class="show-info-user" 
+                                        data-follower-check="<%= post.user.follower_ids.include? current_user.id %>" 
+                                        data-id-user="<%= post.user.id %>" data-status-login="<%= user_signed_in? %>">
+                                        <%= post.user.name %> </a>
+                                    <% else %>
+                                        <a href="<%= author_path(post.user) %>" class="show-info-user" 
+                                        data-follower-check="false"
+                                        data-id-user="<%= post.user.id %>" data-status-login="<%= user_signed_in? %>">
+                                        <%= post.user.name %> </a>
+                                    <% end %>
                                         <span class="mx-2">-</span>
                                     <p class="mb-0 d-inline-block"><%= time_ago_in_words(post.created_at) %></p>
                                     <span class="mx-3">-</span>

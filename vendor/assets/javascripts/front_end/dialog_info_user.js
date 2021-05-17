@@ -12,8 +12,10 @@ class DialogInfoUser {
 
     handleHover() {
         let self = this;
+        let current_hover;
         // bind event client hover user name
         $(document).on("mouseenter",self.class_hover, function(){
+            current_hover = this
             $(this).css('color', 'blue')
             // check cache data
             // ton tai roi => hien ra
@@ -21,9 +23,9 @@ class DialogInfoUser {
             // get data
             // hien ra
             let current_id = $(this).data().idUser
-
+           // console.log(current_id);
             self.processPopup(this);
-            self.hoverEvent(current_id);
+            self.hoverEvent(current_id,current_hover);
         } )
         // $(self.class_hover).mouseenter(function() {
         //     $(this).css('color', 'blue')
@@ -57,7 +59,7 @@ class DialogInfoUser {
         this.showPopup();
     }
 
-    async hoverEvent(target_id) {
+    async hoverEvent(target_id,current_hover) {
         let data;
         // check data cache
         // phai biet id hover
@@ -73,7 +75,7 @@ class DialogInfoUser {
             data = this.cache_data[target_id]
         }
         // xu ly vs thang data
-        this.processData(data);
+        this.processData(data,current_hover);
         
     }
     progressPosition(target) {
@@ -111,21 +113,27 @@ class DialogInfoUser {
         this.popup.addClass('active');
     }
 
-    processData(data) {
-        let html_data = this.tenmplateUserInfo(data);
+    processData(data,current_hover) {
+        let html_data = this.tenmplateUserInfo(data,current_hover);
 
         this.popup.html(html_data)
     }
 
-    tenmplateUserInfo(data) {
-        return (`
-            <div>
+    tenmplateUserInfo(data,current_hover) {
+        console.log(current_hover);
+        let check_login = $(current_hover).attr("data-follower-check")
+        if(check_login === "true"){
+            console.log(check_login);
+            console.log("hủy theo dõi");
+            console.log(typeof check_login);
+            return (`
+            <div >
                 <div class="d-flex align-items-center">
                     <div>
                         <img src="${data.default_avatar}" class="avatar">
                     </div>
                     <div class="ml-2">
-                        <h5 class="text-left mb-0"><a href="/author/${data.id}">${data.name}</a></h5>
+                        <h5 class="text-left mb-0"><a href="/authors/${data.id}">${data.name}</a></h5>
                         <p class="mb-0">${data.email}</p>
                         <div class="d-flex">
                             <div class="mr-3">
@@ -145,11 +153,50 @@ class DialogInfoUser {
                         <!--  -->
                     </div>
                     <div>
-                        <button class="btn btn-outline-primary btn-sm btn-follow">Theo dõi</button>
+                    <button class="btn btn-outline-primary btn-sm btn-unfollow" data-user-id = "${data.id}">Hủy theo dõi </button>
+                       
                     </div>
                 </div>
             </div>
         `)
+        }
+        if(check_login === "false"){
+            console.log("theo dõi");
+            console.log(typeof check_login);
+            return (`
+            <div >
+                <div class="d-flex align-items-center">
+                    <div>
+                        <img src="${data.default_avatar}" class="avatar">
+                    </div>
+                    <div class="ml-2">
+                        <h5 class="text-left mb-0"><a href="/authors/${data.id}">${data.name}</a></h5>
+                        <p class="mb-0">${data.email}</p>
+                        <div class="d-flex">
+                            <div class="mr-3">
+                                <span class="mdi mdi-pencil"></span>
+                                <span>${data.posts_count}</span>
+                            </div>
+                            <div class="mr-3">
+                                <span class="mdi mdi-account-multiple-plus"></span>
+                                <span>${data.followers_count}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-1"/>
+                <div class="d-flex align-items-center justify-content-between py-2">
+                    <div>
+                        <!--  -->
+                    </div>
+                    <div>
+                    <button class="btn btn-outline-primary btn-sm btn-follow" data-user-id = "${data.id}">Theo dõi</button>
+                    </div>
+                </div>
+            </div>
+        `)
+        }
+       
     }
 
     getData(id) {
@@ -160,7 +207,6 @@ class DialogInfoUser {
         })
 
     }
-
     createPopup() {
         this.flag_create_popup = true;
 

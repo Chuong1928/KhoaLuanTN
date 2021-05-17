@@ -1,4 +1,4 @@
-    $('.title_post, .peralink_post').keyup(function () {
+    $('.title_post, .peralink_post, #user_name').keyup(function () {
         let input = $(this).val();
         let remove_unicode = removeVietnameseTones(input)
         let final_permalink = get_permalink(remove_unicode)

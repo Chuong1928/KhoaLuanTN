@@ -18,13 +18,13 @@ class PostController < ApplicationController
         @q = Post.friendly.ransack(params[:q])
         # @list_category = @search.result.order(position: :asc)
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
+        @post = Post.friendly.find(params[:id])
         respond_to do |format|
             format.html # index.html.erb
             format.json { render json: @posts }
             format.js 
         end
-        
-        @post = Post.friendly.find(params[:id])
+    
         # Post.find(13).comments.count
     end
     def update
