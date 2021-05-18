@@ -7,7 +7,7 @@ class HomeController < ApplicationController
         @list_category = @search.result.order(position: :asc)
 
         @q = Post.ransack(params[:q])
-        @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(5)
+        @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
         @posts_viewest = @q.result.visible.order(views: :desc).limit(5)
         
        # @list_tag = 

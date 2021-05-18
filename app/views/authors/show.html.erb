@@ -6,9 +6,20 @@
                                         <img src="<%= @user.avatar.url %>" alt="" class="avatar-sm mr-4 rounded-circle">
 
                                         <div class="media-body overflow-hidden">
-                                            <h5 class="text-truncate font-size-15"><%= @user.name %></h5>
+                                            <h2 class="text-truncate "><%= @user.name %></h2>
                                             <p class="text-muted"><%= @user.email %></p>
                                         </div>
+                                        <% if !@mine  %>
+                                            <div class="px-2">
+                                                <% if current_user.followed_ids.include?(@user.id) %>
+                                                <%= link_to "Hủy theo dõi", destroy_friendship_author_path(@user), method: "post", class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                
+                                                <% else %>
+                                                    <%= link_to "Theo dõi", create_friendship_author_path(@user), method: "post",    class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                    
+                                                <% end %>
+                                            </div>
+                                        <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -23,7 +34,7 @@
                                         <div class="crypto-buy-sell-nav">
                                             <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-toggle="tab" href="#post" role="tab">
+                                                    <a class="nav-link " data-toggle="tab" href="#post" role="tab">
                                                         Bài viết
                                                     </a>
                                                 </li>
@@ -162,7 +173,11 @@
                                                                     <!--  -->
                                                                 </div>
                                                                 <div>
-                                                                    <button class="btn btn-outline-primary btn-sm btn-follow" data-user-id = "<%= user.id %>">Theo dõi</button>
+                                                                    <% if current_user.followed_ids.include?(user.id) %>
+                                                                          <%= link_to "Hủy theo dõi", destroy_friendship_author_path(user) , method: "post", class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                                    <% else %>
+                                                                        <%= link_to "Theo dõi", create_friendship_author_path(user) , method: "post", class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                                    <% end %>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -172,39 +187,51 @@
                                                 </div>
                                                 <div class="tab-pane" id="followeds" role="tabpanel">
                                                     <div class="row">
-                                                        <% @user.followeds.each do |user| %>
-                                                        <div class="col-xl-3 col-sm-6">
-                                                            <div class="p-3">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div>
-                                                                        <img src="<%= user.avatar.url %>" class="avatar-follow">
-                                                                    </div>
-                                                                    <div class="ml-2">
-                                                                        <h5 class="text-left mb-0"><a href="<%= author_path(user) %>"><%= user.name %></a></h5>
-                                                                        <p class="mb-0"><%= user.email %></p>
-                                                                        <div class="d-flex">
-                                                                            <div class="mr-3">
-                                                                                <span class="mdi mdi-pencil"></span>
-                                                                                <span><%= user.posts.count %></span>
+                                                        <% if !@user.followeds.blank? %>
+                                                            <% @user.followeds.each do |user| %>
+                                                                    <div class="col-xl-3 col-sm-6">
+                                                                        <div class="p-3">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div>
+                                                                                    <img src="<%= user.avatar.url %>" class="avatar-follow">
+                                                                                </div>
+                                                                                <div class="ml-2">
+                                                                                    <h5 class="text-left mb-0"><a href="<%= author_path(user) %>"><%= user.name %></a></h5>
+                                                                                    <p class="mb-0"><%= user.email %></p>
+                                                                                    <div class="d-flex">
+                                                                                        <div class="mr-3">
+                                                                                            <span class="mdi mdi-pencil"></span>
+                                                                                            <span><%= user.posts.count %></span>
+                                                                                        </div>
+                                                                                        <div class="mr-3">
+                                                                                            <span class="mdi mdi-account-multiple-plus"></span>
+                                                                                            <span><%= user.followers.count %></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="mr-3">
-                                                                                <span class="mdi mdi-account-multiple-plus"></span>
-                                                                                <span><%= user.followers.count %></span>
+                                                                            <hr class="my-1"/>
+                                                                            <div class="d-flex align-items-center justify-content-between py-2">
+                                                                                <div>
+                                                                                    <!--  -->
+                                                                                </div>
+                                                                            <div>
+                                                                                <% if current_user.followed_ids.include?(user.id) %>
+                                                                                <%= link_to "Hủy theo dõi", destroy_friendship_author_path(user), method: "post", class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                                                
+                                                                                <% else %>
+                                                                                    <%= link_to "Theo dõi", create_friendship_author_path(user), method: "post",    class: "btn btn-outline-primary btn-sm btn-follow" %>
+                                                                                    
+                                                                                <% end %>
+                                                                            </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <hr class="my-1"/>
-                                                                <div class="d-flex align-items-center justify-content-between py-2">
-                                                                    <div>
-                                                                        <!--  -->
-                                                                    </div>
-                                                                    <div>
-                                                                        <button class="btn btn-outline-primary btn-sm btn-follow" data-user-id = "<%= user.id %>">Theo dõi</button>
-                                                                    </div>
-                                                                </div>
+                                                                    <% end %>
+                                                        <% else  %>
+                                                            <div class="text-center w-100 h-100 py-5">
+                                                                <p >Không có gì ở đây</p>
                                                             </div>
-                                                        </div>
                                                         <% end %>
                                                     </div>
                                                     </div>

@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     
     devise_for :users
     resources :categories
-    resources :authors
+    resources :authors do
+      member do
+        post :create_friendship
+        post :destroy_friendship
+      end
+    end
 
     
     resources :post do 

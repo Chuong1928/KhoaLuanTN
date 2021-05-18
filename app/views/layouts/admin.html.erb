@@ -84,13 +84,7 @@
                                     <span>Quản lý Tag</span>
                                 </a>
                             </li>
-                        <% else %>
-                             <li>
-                                <a href="<%= admin_users_path %>" class="">
-                                    <i class="bx bx-user"></i>
-                                    <span>Quản lý tài khoản</span>
-                                </a>
-                            </li>
+                       
                         <% end %>
                          <li>
                             <a href="<%= admin_comments_path %>" class=" waves-effect">
@@ -98,11 +92,17 @@
                                 <span> Quản lý Comment</span>
                             </a>
                         </li>
-                         <li>
-                            <a href="<%= admin_authors_path %>" class=" waves-effect">
-                                <i class="bx bx-wifi follower-icon-custom"></i>
-                                <span> Quản lý theo dõi</span>
-                            </a>
+                        <li>
+                                <a href="<%= edit_profile_admin_users_path %>" class="">
+                                    <i class="bx bx-user"></i>
+                                    <span>Thông tin cá nhân</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="<%= edit_password_admin_users_path %>" class="">
+                                    <i class="bx bx-user"></i>
+                                    <span>Mật khẩu</span>
+                                </a>
                         </li>
                     </ul>
                 </div>

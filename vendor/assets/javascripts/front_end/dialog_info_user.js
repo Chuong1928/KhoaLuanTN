@@ -12,10 +12,8 @@ class DialogInfoUser {
 
     handleHover() {
         let self = this;
-        let current_hover;
         // bind event client hover user name
         $(document).on("mouseenter",self.class_hover, function(){
-            current_hover = this
             $(this).css('color', 'blue')
             // check cache data
             // ton tai roi => hien ra
@@ -25,7 +23,7 @@ class DialogInfoUser {
             let current_id = $(this).data().idUser
            // console.log(current_id);
             self.processPopup(this);
-            self.hoverEvent(current_id,current_hover);
+            self.hoverEvent(current_id);
         } )
         // $(self.class_hover).mouseenter(function() {
         //     $(this).css('color', 'blue')
@@ -59,7 +57,7 @@ class DialogInfoUser {
         this.showPopup();
     }
 
-    async hoverEvent(target_id,current_hover) {
+    async hoverEvent(target_id) {
         let data;
         // check data cache
         // phai biet id hover
@@ -75,7 +73,7 @@ class DialogInfoUser {
             data = this.cache_data[target_id]
         }
         // xu ly vs thang data
-        this.processData(data,current_hover);
+        this.processData(data);
         
     }
     progressPosition(target) {
@@ -113,90 +111,115 @@ class DialogInfoUser {
         this.popup.addClass('active');
     }
 
-    processData(data,current_hover) {
-        let html_data = this.tenmplateUserInfo(data,current_hover);
+    processData(data) {
+        let html_data = this.tenmplateUserInfo(data);
 
         this.popup.html(html_data)
+
+        if(!data.mine && data.status_login) {
+            this.bindFollowActions(data.user_data.id)
+        }
     }
 
-    tenmplateUserInfo(data,current_hover) {
-        console.log(current_hover);
-        let check_login = $(current_hover).attr("data-follower-check")
-        if(check_login === "true"){
-            console.log(check_login);
-            console.log("hủy theo dõi");
-            console.log(typeof check_login);
-            return (`
+    bindFollowActions(id) {
+        let self = this;
+        this.popup.find('.btn-follow').click(function() {
+            $.ajax({
+                url: `/authors/${id}/create_friendship`,
+                data: {
+                    authenticity_token: AUTH_TOKEN
+                },
+                type: 'POST',
+                dataType: 'json',
+            }).done(function (data) {
+                self.cache_data[id] = data
+                self.processData(data);
+
+            }).fail(function () {
+                let mess = "Cập nhật thất bại";
+                notiFail(mess)
+            })
+        })
+        this.popup.find('.btn-unfollow').click(function() {
+            $.ajax({
+                url: `/authors/${id}/destroy_friendship`,
+                data: {
+                    authenticity_token: AUTH_TOKEN
+                },
+                type: 'POST',
+                dataType: 'json',
+            }).done(function (data) {
+                self.cache_data[id] = data
+                self.processData(data);
+
+            }).fail(function () {
+                let mess = "Cập nhật thất bại";
+                notiFail(mess)
+            })
+        })
+    }
+
+    tenmplateUserInfo(data) {
+        let user_data = data.user_data
+        let actions = '';
+        if(!data.mine) {
+            actions = this.htmlActions(data);
+        }
+        return (`
             <div >
                 <div class="d-flex align-items-center">
                     <div>
-                        <img src="${data.default_avatar}" class="avatar">
+                        <img src="${user_data.default_avatar}" class="avatar">
                     </div>
                     <div class="ml-2">
-                        <h5 class="text-left mb-0"><a href="/authors/${data.id}">${data.name}</a></h5>
-                        <p class="mb-0">${data.email}</p>
+                        <h5 class="text-left mb-0"><a href="/authors/${user_data.id}">${user_data.name}</a></h5>
+                        <p class="mb-0">${user_data.email}</p>
                         <div class="d-flex">
                             <div class="mr-3">
                                 <span class="mdi mdi-pencil"></span>
-                                <span>${data.posts_count}</span>
+                                <span>${user_data.posts_count}</span>
                             </div>
                             <div class="mr-3">
                                 <span class="mdi mdi-account-multiple-plus"></span>
-                                <span>${data.followers_count}</span>
+                                <span>${user_data.followers_count}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr class="my-1"/>
-                <div class="d-flex align-items-center justify-content-between py-2">
-                    <div>
-                        <!--  -->
-                    </div>
-                    <div>
-                    <button class="btn btn-outline-primary btn-sm btn-unfollow" data-user-id = "${data.id}">Hủy theo dõi </button>
-                       
-                    </div>
-                </div>
+                ${actions}
             </div>
         `)
-        }
-        if(check_login === "false"){
-            console.log("theo dõi");
-            console.log(typeof check_login);
-            return (`
-            <div >
-                <div class="d-flex align-items-center">
-                    <div>
-                        <img src="${data.default_avatar}" class="avatar">
-                    </div>
-                    <div class="ml-2">
-                        <h5 class="text-left mb-0"><a href="/authors/${data.id}">${data.name}</a></h5>
-                        <p class="mb-0">${data.email}</p>
-                        <div class="d-flex">
-                            <div class="mr-3">
-                                <span class="mdi mdi-pencil"></span>
-                                <span>${data.posts_count}</span>
-                            </div>
-                            <div class="mr-3">
-                                <span class="mdi mdi-account-multiple-plus"></span>
-                                <span>${data.followers_count}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="my-1"/>
-                <div class="d-flex align-items-center justify-content-between py-2">
-                    <div>
-                        <!--  -->
-                    </div>
-                    <div>
-                    <button class="btn btn-outline-primary btn-sm btn-follow" data-user-id = "${data.id}">Theo dõi</button>
-                    </div>
-                </div>
-            </div>
-        `)
-        }
        
+    }
+
+    htmlActions(data) {
+        return(`
+            <hr class="my-1"/>
+            <div class="d-flex align-items-center justify-content-between py-2">
+                <div>
+                    <!--  -->
+                </div>
+                <div>
+                    ${ !data.status_login ? this.renderLinkLogin() : this.renderFollowActions(data.status_follow) }
+                </div>
+            </div>
+        `)
+    }
+    renderLinkLogin() {
+        return (`
+            <a href="users/sign_in" class="btn btn-outline-primary btn-sm">Theo dõi</a>
+        `)
+    }
+
+    renderFollowActions(follow_status) {
+        if(follow_status) {
+            return (`
+                <button class="btn btn-outline-primary btn-sm btn-unfollow">Hủy theo dõi</button>
+            `)
+        }
+        return (`
+            <button class="btn btn-outline-primary btn-sm btn-follow">Theo dõi</button>
+        `)
     }
 
     getData(id) {

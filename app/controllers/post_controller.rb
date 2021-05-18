@@ -4,6 +4,7 @@ class PostController < ApplicationController
         @q = policy_scope(Post).ransack(params[:q])
         # @list_category = @search.result.order(position: :asc)
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
+        @posts_viewest = @q.result.visible.order(views: :desc).limit(5)
         respond_to do |format|
             format.html # index.html.erb
             format.json { render json: @posts }
