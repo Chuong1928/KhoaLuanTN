@@ -11,7 +11,7 @@ class AuthorsController < ApplicationController
         @q = Post.friendly.ransack(params[:q])
         # @list_category = @search.result.order(position: :asc)
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
-        @user = User.friendly.find_by_id(params[:id])
+        @user = User.friendly.find(params[:id])
         
         @status_login = user_signed_in?
         @follow_by_current_user = current_user.present? ? @user.follower_ids.include?(current_user.id) : false
@@ -35,7 +35,7 @@ class AuthorsController < ApplicationController
     end
 
     def create_friendship
-        @follow_target = User.find_by_id(params[:id])
+        @follow_target = User.friendly.find(params[:id])
 
         @follow_target.followers << current_user
         respond_to do |format|
@@ -51,7 +51,7 @@ class AuthorsController < ApplicationController
         end
     end
     def destroy_friendship
-        @follow_target = User.find_by_id(params[:id])
+        @follow_target = User.friendly.find(params[:id])
 
         @follow_target.friendship_followers.where(follower_id: current_user.id).destroy_all
 

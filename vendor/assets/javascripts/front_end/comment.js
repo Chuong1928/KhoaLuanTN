@@ -3,7 +3,7 @@
         let new_comment = $("#textarea").val()
         let post_id = $(".post-body").attr("data-post-id")
         // console.log(new_comment);
-        console.log("123");
+        console.log("1234");
         $.ajax({
             url: `/post/${post_id}/comments`,
             data: {
@@ -18,7 +18,8 @@
         }).done(function (data) {
             $("#textarea").val("")
             $(".post-comment").addClass("btn-disabled")
-            $(".post-comment").attr("disabled",true); 
+            $(".post-comment").attr("disabled",true);
+            console.log(data);
         }).fail(function () {
             let mess = "Cập nhật thất bại";
             notiFail(mess)
@@ -132,4 +133,71 @@ $(document).on('click','.delete-comment',function(e){
                 })
          })
 
+    })
+    //rep comment
+
+    $(document).on("click",".toggle-repcomment",function(e){
+        e.preventDefault();
+       // console.log(123);
+       // $(".comment-form").toggle()
+       $(this).closest(".current-comment").find(".time-ago").append(replycomment_form())
+       validate_form()
+    })
+
+
+    function replycomment_form(){
+        return(`
+                <div class="d-block media py-2 border-bottom comment-form">
+                <div class="mt-3 d-flex w-100">
+                <div class="flex-grow-1">
+                
+                        <textarea id="repcommet-body" class="form-control" maxlength="225" rows="3" placeholder="This textarea has a limit of 225 chars."></textarea>
+                </div>
+            </div>
+            <button class="btn btn-info mt-4 post-repcomment btn-disabled " disabled = true >Gửi câu trả lời</button>
+        </div>
+        `)
+    }
+    function validate_form(){
+        
+        $("#repcommet-body").keyup(function(){
+           // console.log("zo");
+            let comment_body = $(this).val();
+           
+            console.log(comment_body);
+            if(comment_body == ""){
+                $(".post-repcomment").attr("disabled",true);  
+            }else{
+                $(".post-repcomment").attr("disabled",false);
+                $(".post-repcomment").removeClass("btn-disabled")
+            }
+             
+        })
+    }
+    $(document).on("click",".post-repcomment",function(){
+        //console.log(123);
+        let post_id = $(".post-body").attr("data-post-id")
+        let comment_id = $(this).closest(".comment-items").attr("data-comment-id")
+        let rep_comment = $("#repcommet-body").val()
+        console.log(rep_comment);
+        $.ajax({
+            url: `/post/${post_id}/comments/${comment_id}/rep_comment`,
+            data: {
+                repcomment: {
+                    body: rep_comment,
+                    comment_id: comment_id,
+                    post_id: post_id
+                },
+                authenticity_token: AUTH_TOKEN
+            },
+            type: 'POST',
+            dataType: 'script',
+        }).done(function (data) {
+            $("#textarea").val("")
+            $(".post-repcomment").addClass("btn-disabled")
+            $(".post-repcomment").attr("disabled",true); 
+        }).fail(function () {
+            let mess = "Cập nhật thất bại";
+            notiFail(mess)
+        })
     })

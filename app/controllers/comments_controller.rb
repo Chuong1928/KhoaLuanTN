@@ -61,7 +61,25 @@ class CommentsController < ApplicationController
 
         end 
     end
+    
+    def rep_comment
+            @post = Post.find(params[:post_id])
+            @rep_comment =  Replycomment.new(repcomment_params)
+            @rep_comment.user_id = current_user.id
+            if @rep_comment.save
+                respond_to do |format|
+                    format.js 
+                     #format.json {render :json => {mes: "Gửi bình luận thành công"}} # index.html.erb
+                end
+            end
+    end
+
     def comment_params
         params.require(:comment).permit(:body, :post_id)
     end
+
+    def repcomment_params
+        params.require(:repcomment).permit(:body, :comment_id, :post_id)
+    end
+
 end

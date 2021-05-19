@@ -36,7 +36,9 @@ Rails.application.routes.draw do
 
     
     resources :post do 
-      resources :comments
+      resources :comments do
+        post :rep_comment
+      end
     end
 
 end
