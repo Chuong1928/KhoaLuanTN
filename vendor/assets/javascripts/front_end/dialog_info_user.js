@@ -169,7 +169,7 @@ class DialogInfoUser {
             <div >
                 <div class="d-flex align-items-center">
                     <div>
-                        <img src="${user_data.default_avatar}" class="avatar">
+                        ${this.checkAvatar(data)}
                     </div>
                     <div class="ml-2">
                         <h5 class="text-left mb-0"><a href="/authors/${user_data.id}">${user_data.name}</a></h5>
@@ -191,7 +191,16 @@ class DialogInfoUser {
         `)
        
     }
-
+    checkAvatar(data){
+        if(data.avatar){
+            return(`
+                <img src="${data.user_data.default_avatar}" class="avatar">
+            `)
+        }
+        return(`
+                <img src="/images/default-avatar.png" class="avatar">
+            `)
+    }
     htmlActions(data) {
         return(`
             <hr class="my-1"/>

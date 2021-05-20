@@ -6,12 +6,12 @@
                             <div class="col-lg-1 position-relative text-center py-5" style="">
                                <div class="post-action">
                                     <div class="text-center d-none avatar-user">
-                                        <img src="<%= @post.user.avatar.url %>" alt="" class="avatar-sm rounded-circle text-center">
+                                        <img src="<%= @post.user.avatar.present? ? @post.user.avatar.url : "/images/default-avatar.png" %>" alt="" class="avatar-sm rounded-circle text-center">
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <a href="#" ><i class="bx bx-caret-up fs-40px" data-toggle="tooltip" data-placement="right" data-original-title="Upvote"></i></a>
-                                        <h2> <%= @post.vote_point %></h2>
-                                        <a href="#" ><i class="bx bx-caret-down fs-40px " data-toggle="tooltip" data-placement="right" data-original-title="Downvote"></i></a>
+                                        <a href="#" ><i class="bx bx-caret-up fs-40px <%= "hightlight" if @post_vote_check.present? && @post_vote_check.up_vote?  %> " data-toggle="tooltip" data-placement="right" data-original-title="Upvote"></i></a>
+                                        <h2> <%= @point_vote %></h2>
+                                        <a href="#" ><i class="bx bx-caret-down fs-40px <%= "hightlight" if @post_vote_check.present? && @post_vote_check.down_vote?  %>" data-toggle="tooltip" data-placement="right" data-original-title="Downvote"></i></a>
                                         <a href="#" ><i class="bx bxl-facebook my-2 font-size-20 p-2 border-custom" data-toggle="tooltip" data-placement="right" data-original-title="Chia sẻ lên facabook"></i></a>
                                          <a href="#" ><i class="bx bxl-twitter my-2 font-size-20 p-2 border-custom" data-toggle="tooltip" data-placement="right" data-original-title="Chia sẻ lên facabook"></i></a>
                                     </div>
@@ -21,7 +21,7 @@
                                 <div class="card post-body" data-post-id = "<%=  @post.id %>">
                                     <div class="card-body">
                                         <div class="media">
-                                            <img src="<%= @post.user.avatar.url %>" alt="" class="avatar-sm mr-4 rounded-circle">
+                                            <img src="<%= @post.user.avatar.present? ? @post.user.avatar.url : "/images/default-avatar.png"  %>" alt="" class="avatar-sm mr-4 rounded-circle">
 
                                             <div class="media-body overflow-hidden">
                                                 <h5 class="text-truncate font-size-15"><%= @post.user.name %></h5>

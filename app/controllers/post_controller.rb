@@ -20,6 +20,8 @@ class PostController < ApplicationController
         # @list_category = @search.result.order(position: :asc)
         @posts = @q.result.visible.order(created_at: :desc).page(params[:page]).per(10)
         @post = Post.friendly.find(params[:id])
+        @point_vote = @post.votes.up_vote.count - @post.votes.down_vote.count
+        @post_vote_check = current_user.present? ? @post.votes.find_by_user_id(current_user.id) : nil
         respond_to do |format|
             format.html # index.html.erb
             format.json { render json: @posts }
