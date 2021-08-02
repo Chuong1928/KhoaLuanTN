@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :votes
+  has_many :notifications
   has_many :replycomments
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

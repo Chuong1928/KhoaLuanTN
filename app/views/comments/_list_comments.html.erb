@@ -28,9 +28,14 @@
                             <li class="list-inline-item">
                                 <a href="#"><i class="far fa-thumbs-up mr-1"></i> <%= comment.like %></a>
                             </li>
-                                
                             <li class="list-inline-item">
-                                <a href="#" class="toggle-repcomment"><i class="far fa-comment-dots mr-1"></i> Trả lời</a>
+                                <a href="#"><i class="far fa-thumbs-down mr-1"></i> <%= comment.dislike %></a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <% if user_signed_in? %>
+                                    <a href="#" class="toggle-repcomment"><i class="far fa-comment-dots mr-1"></i> Trả lời</a>
+                                <% end %>
                             </li>
                         </ul>
                     

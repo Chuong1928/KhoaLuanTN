@@ -6,32 +6,28 @@
                                 <ul class="navbar-nav justify-content-between w-100">
 
                                     <div class="nav-menu d-lg-flex">
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-home-circle mr-2"></i>Danh mục <div class="arrow-down"></div>
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="<%= categories_path %>" id="topnav-dashboard" >
+                                                <i class="mdi mdi-file "></i> <strong>Danh mục (<%= Category.all.count %>) </strong>
                                             </a>
-                                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                                  <% @list_category.each do |category|  %>
-                                                        <a href="<%=  %>" class="dropdown-item"><%= category.name %></a>
-                                                    <% end %>
-                                            </div>
+                                            
                                         </li>
         
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-tone mr-2"></i>Bài viết mới
+                                            <a class="nav-link " href="#" id="topnav-uielement" >
+                                                <i class="mdi mdi-pencil mr-1   "></i><strong>Bài viết (<%= Post.all.count %>) </strong> 
                                             </a>
                                         </li>
         
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-customize mr-2"></i>Bài viết nổi bật
+                                            <a class="nav-link " href="#" id="topnav-uielement" >
+                                                <i class="mdi mdi-ethernet mr-1"></i><strong>Đang theo dõi </strong> 
                                             </a>
-                                        </li> 
+                                        </li>
                                     </div>               
                                     <div class="new-post d-flex align-items-center">
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-toggle arrow-none btn btn-info" href="#" id="topnav-layout" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <li class="nav-item ">
+                                            <a class="dropdown-toggle  btn btn-info" href="<%= new_admin_post_path %>" id="topnav-layout">
                                                 <i class="bx bx-layout dripicons-pencil mr-2"></i>Viết bài 
                                             </a>
                                         </li>

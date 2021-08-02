@@ -3,21 +3,10 @@
                         <!-- end page title -->
 
                         <div class="row ">
-                            <div class="col-lg-1 position-relative text-center py-5" style="">
-                               <div class="post-action">
-                                    <div class="text-center d-none avatar-user">
-                                        <img src="<%= @post.user.avatar.present? ? @post.user.avatar.url : "/images/default-avatar.png" %>" alt="" class="avatar-sm rounded-circle text-center">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <a href="#" ><i class="bx bx-caret-up fs-40px <%= "hightlight" if @post_vote_check.present? && @post_vote_check.up_vote?  %> " data-toggle="tooltip" data-placement="right" data-original-title="Upvote"></i></a>
-                                        <h2> <%= @point_vote %></h2>
-                                        <a href="#" ><i class="bx bx-caret-down fs-40px <%= "hightlight" if @post_vote_check.present? && @post_vote_check.down_vote?  %>" data-toggle="tooltip" data-placement="right" data-original-title="Downvote"></i></a>
-                                        <a href="#" ><i class="bx bxl-facebook my-2 font-size-20 p-2 border-custom" data-toggle="tooltip" data-placement="right" data-original-title="Chia sẻ lên facabook"></i></a>
-                                         <a href="#" ><i class="bx bxl-twitter my-2 font-size-20 p-2 border-custom" data-toggle="tooltip" data-placement="right" data-original-title="Chia sẻ lên facabook"></i></a>
-                                    </div>
-                               </div>
+                            <div class="col-lg-1 position-relative text-center py-5" id="post-action">
+                                 <%= render partial: "post_action" %>
                             </div>
-                            <div class="col-lg-8 " id="post-content">
+                            <div class="col-lg-8 " id="post-content" data-status-voted = "<%= true if @post_vote_check.present? && (@post_vote_check.up_vote?  || @post_vote_check.down_vote?)   %>">
                                 <div class="card post-body" data-post-id = "<%=  @post.id %>">
                                     <div class="card-body">
                                         <div class="media">
@@ -54,7 +43,7 @@
                                             <h1 class="my-4"><%= @post.title %></h1>
                                             <div class="post-option my-4 justify-content-between">
                                                  <div class="dropdown">
-                                                    <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                                                    <a href="#" class="dropdown-toggle card-drop show-action" data-toggle="dropdown" aria-expanded="false">
                                                         <i class="bx bx-caret-down font-size-30  " data-toggle="tooltip" data-original-title="Show action"></i>
                                                     </a>
                                                     <ul class="dropdown-menu dropdown-menu-right">
@@ -93,8 +82,8 @@
                             </div>
                             <!-- end col -->
 
-                            <div class="col-lg-3" id="">
-
+                            <div class="col-lg-3 " id="">
+                                    <div class = "read-more-from-user">
                                         <h3 class=" mb-3 read-more">Xem thêm từ <%= @post.user.name %> </h3>
                                         <% @post.user.posts.order(created_at: :DESC).limit(5).each do |post| %>
                                         
@@ -121,8 +110,10 @@
                                                         </ul>
                                                 </div>
                                             </div>
+                                            
                                        <% end %>
 
+                                    </div>
                             </div>
                             <!-- end col -->
                         </div>

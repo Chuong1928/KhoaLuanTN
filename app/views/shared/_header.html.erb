@@ -75,8 +75,7 @@
                                             class="bx bx-user font-size-16 align-middle mr-1"></i> Dashboard</a>
                                     <a class="dropdown-item" href="<%= author_path(current_user.id) %>"><i
                                             class="bx bx-wallet font-size-16 align-middle mr-1"></i> Hồ sơ</a>
-                                    <a class="dropdown-item" href="<%= new_admin_post_path %>"><i
-                                            class="bx bx-wallet font-size-16 align-middle mr-1" target = "_blank"></i> Viết bài</a>
+                        
                                     <a class="dropdown-item d-block" href="#"><span
                                             class="badge badge-success float-right">11</span><i
                                             class="bx bx-wrench font-size-16 align-middle mr-1"></i> Thông báo</a>
@@ -96,4 +95,4 @@
                     </div>
                 </div>
             </header>
-            
+            <%= render partial: "shared/topnav" %>

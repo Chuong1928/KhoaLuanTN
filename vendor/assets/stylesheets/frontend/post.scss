@@ -62,9 +62,9 @@
 }
 .fixed-left{
     position: fixed;
-    top: 100px;
+    top: 150px;
     z-index: 1000;
-    transform: translate(10px, 10px);
+    
 }
 .font-size-30{
     font-size: 30px;
@@ -169,4 +169,15 @@
     }
 
 
+}
+.hightlight{
+    color: green;
+    transform: scale(1.2);
+}
+.fixed-right-banner{
+    position: fixed;
+    top: 100px;
+    width: 19%;
+    overflow-y: auto;
+    height: calc(100vh - 10rem);
 }

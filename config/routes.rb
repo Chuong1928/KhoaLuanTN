@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       resources :comments do
         post :rep_comment
       end
+      resources :vote, only: [:create, :update]
+      resources :notifications
     end
-
+    
 end
